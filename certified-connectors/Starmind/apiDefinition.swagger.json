@@ -1,0 +1,753 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Starmind Dev",
+    "description": "The Starmind Connector enables seamless integration with Starmind\u2019s knowledge engine, allowing users to access verified answers and expert insights across their organisation. By connecting to Starmind, your workflows and agents can intelligently retrieve responses to business-critical questions, surface expert knowledge, and streamline decision-making processes.",
+    "version": "1.0",
+    "contact": {
+      "name": "Starmind technical support experts are ready to listen and help",
+      "url": "https://starmind.atlassian.net/servicedesk/customer/portal/2",
+      "email": "product@starmind.com"
+    }
+  },
+  "x-ms-connector-metadata": [
+    {
+      "propertyName": "Website",
+      "propertyValue": "https://starmind.ai"
+    },
+    {
+      "propertyName": "Privacy policy",
+      "propertyValue": "https://www.starmind.ai/privacy-policy"
+    },
+    {
+      "propertyName": "Categories",
+      "propertyValue": "Productivity;Collaboration"
+    }
+  ],
+  "host": "starmind.com",
+  "basePath": "/",
+  "schemes": ["https"],
+  "consumes": ["application/json"],
+  "produces": [],
+  "paths": {
+    "/api/v1/questions": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "_links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "object",
+                      "properties": {
+                        "href": {
+                          "type": "string",
+                          "description": "href"
+                        }
+                      },
+                      "description": "self"
+                    },
+                    "next": {
+                      "type": "object",
+                      "properties": {
+                        "href": {
+                          "type": "string",
+                          "description": "href"
+                        }
+                      },
+                      "description": "next"
+                    },
+                    "last": {
+                      "type": "object",
+                      "properties": {
+                        "href": {
+                          "type": "string",
+                          "description": "href"
+                        }
+                      },
+                      "description": "last"
+                    }
+                  },
+                  "description": "_links"
+                },
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "knowledge_space_id": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "knowledge_space_id"
+                      },
+                      "upvote_count": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "upvote_count"
+                      },
+                      "translations": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "description": {
+                              "type": "string",
+                              "description": "description"
+                            },
+                            "language": {
+                              "type": "string",
+                              "description": "language"
+                            },
+                            "title": {
+                              "type": "string",
+                              "description": "title"
+                            }
+                          }
+                        },
+                        "description": "translations"
+                      },
+                      "view_count": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "view_count"
+                      },
+                      "image": {
+                        "type": "string",
+                        "description": "image"
+                      },
+                      "published": {
+                        "type": "string",
+                        "description": "published"
+                      },
+                      "is_deleted": {
+                        "type": "boolean",
+                        "description": "is_deleted"
+                      },
+                      "slug": {
+                        "type": "string",
+                        "description": "slug"
+                      },
+                      "title": {
+                        "type": "string",
+                        "description": "title"
+                      },
+                      "last_activity": {
+                        "type": "string",
+                        "description": "last_activity"
+                      },
+                      "is_published": {
+                        "type": "boolean",
+                        "description": "is_published"
+                      },
+                      "created": {
+                        "type": "string",
+                        "description": "created"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "description"
+                      },
+                      "solution_count": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "solution_count"
+                      },
+                      "content_updated": {
+                        "type": "string",
+                        "description": "content_updated"
+                      },
+                      "id": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "id"
+                      },
+                      "updated": {
+                        "type": "string",
+                        "description": "updated"
+                      },
+                      "language": {
+                        "type": "string",
+                        "description": "language"
+                      },
+                      "attachments": {
+                        "type": "string",
+                        "description": "attachments"
+                      }
+                    }
+                  },
+                  "description": "items"
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "total"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Find questions",
+        "operationId": "FindQuestion",
+        "x-ms-visibility": "important",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "The question search query",
+            "x-ms-summary": "Search query for questions",
+            "x-ms-visibility": "important"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Limit the number of returned questions. Defaults to 10.",
+            "x-ms-summary": "Maximum number of questions to return",
+            "x-ms-visibility": "important"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "x-ms-visibility": "important",
+            "description": "Filter the list of questions using a predefined filter.",
+            "x-ms-summary": "Predefined filter for questions",
+            "enum": [
+              "solved",
+              "unsolved",
+              "my-questions",
+              "my-solutions",
+              "flagged",
+              "following",
+              "trending",
+              "accepted",
+              "verified"
+            ]
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Specify the criteria the result is sorted by",
+            "x-ms-summary": "Sort criteria for questions",
+            "enum": [
+              "last_activity.desc",
+              "last_activity.asc",
+              "solution_count.desc",
+              "solution_count.asc",
+              "date_published.desc",
+              "date_published.asc",
+              "view_count.desc",
+              "view_count.asc",
+              "id.desc",
+              "id.asc",
+              "interest.desc",
+              "interest.asc",
+              "activity_and_interest.desc",
+              "activity_and_interest.asc"
+            ],
+            "x-ms-visibility": "important"
+          }
+        ],
+        "description": "Finds questions based on the provided query parameters.",
+        "x-ms-openai-data": {
+          "openai-enabled": true,
+          "operations": [
+            {
+              "operationId": "FindQuestion",
+              "x-ms-require-user-confirmation": false,
+              "parameters": [
+                {
+                  "name": "query",
+                  "type": "upsert",
+                  "properties": [
+                    {
+                      "name": "required",
+                      "value": false,
+                      "type": "upsert"
+                    },
+                    {
+                      "name": "x-ms-explicit-input",
+                      "value": false,
+                      "type": "upsert"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "post": {
+        "summary": "Create a question draft",
+        "description": "Creates a new question draft.",
+        "operationId": "PostQuestion",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "description": "question title, Between 10 and 100 characters.",
+                  "title": "",
+                  "x-ms-visibility": "important"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "question description"
+                },
+                "language": {
+                  "type": "string",
+                  "description": "The question language will be detected automatically based on the title and description text. Providing a language explicitly is usually not necessary, and only helps in cases where the automatic language detection is not able to detect the language unambiguously",
+                  "title": "",
+                  "x-ms-visibility": "advanced"
+                },
+                "knowledge_space": {
+                  "type": "string",
+                  "description": "the id of the knowledge space to assign the question to",
+                  "title": "",
+                  "x-ms-visibility": "advanced"
+                },
+                "category": {
+                  "type": "string",
+                  "description": "If this field is omitted, the question will be uncategorized.",
+                  "title": "",
+                  "x-ms-visibility": "advanced"
+                }
+              },
+              "x-ms-visibility": "important",
+              "required": ["title"]
+            },
+            "x-ms-visibility": "important"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Question draft created, successfully",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "knowledge_space_id": {
+                  "type": "string",
+                  "description": "knowledge_space_id"
+                },
+                "upvote_count": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "upvote_count"
+                },
+                "translations": {
+                  "type": "array",
+                  "items": {},
+                  "description": "translations"
+                },
+                "view_count": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "view_count"
+                },
+                "image": {
+                  "type": "string",
+                  "description": "image"
+                },
+                "published": {
+                  "type": "string",
+                  "description": "published"
+                },
+                "is_deleted": {
+                  "type": "boolean",
+                  "description": "is_deleted"
+                },
+                "slug": {
+                  "type": "string",
+                  "description": "slug"
+                },
+                "title": {
+                  "type": "string",
+                  "description": "title"
+                },
+                "last_activity": {
+                  "type": "string",
+                  "description": "last_activity"
+                },
+                "attachments": {
+                  "type": "string",
+                  "description": "attachments"
+                },
+                "is_published": {
+                  "type": "boolean",
+                  "description": "is_published"
+                },
+                "created": {
+                  "type": "string",
+                  "description": "created"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "description"
+                },
+                "solution_count": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "solution_count"
+                },
+                "content_updated": {
+                  "type": "string",
+                  "description": "content_updated"
+                },
+                "id": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "id"
+                },
+                "updated": {
+                  "type": "string",
+                  "description": "updated"
+                },
+                "language": {
+                  "type": "string",
+                  "description": "language"
+                }
+              }
+            }
+          }
+        },
+        "x-ms-visibility": "important",
+        "x-ms-openai-data": {
+          "openai-enabled": true,
+          "operations": [
+            {
+              "operationId": "PostQuestion",
+              "x-ms-require-user-confirmation": false
+            }
+          ]
+        }
+      }
+    },
+    "/api/v1/questions/{questionId}/publish": {
+      "put": {
+        "responses": {
+          "200": {
+            "description": "The number of experts notified for the published question",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "number_of_experts": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "number_of_experts"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Publish a question",
+        "description": "Publishes question draft",
+        "operationId": "PublishQuestion",
+        "x-ms-visibility": "important",
+        "parameters": [
+          {
+            "name": "questionId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "x-ms-summary": "ID of the question to publish",
+            "description": "The ID of the question draft to be published",
+            "x-ms-url-encoding": "single"
+          }
+        ],
+        "x-ms-openai-data": {
+          "openai-enabled": true,
+          "operations": [
+            {
+              "operationId": "PublishQuestion",
+              "x-ms-require-user-confirmation": true
+            }
+          ]
+        }
+      }
+    },
+    "/api/v2/learning/experts/search": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "experts": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "global_user_id": {
+                        "type": "string",
+                        "description": "global_user_id",
+                        "title": "",
+                        "x-ms-visibility": "important"
+                      },
+                      "score": {
+                        "type": "number",
+                        "format": "float",
+                        "description": "score"
+                      },
+                      "concept_scores": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "score": {
+                              "type": "number",
+                              "format": "float",
+                              "description": "score"
+                            },
+                            "concept": {
+                              "type": "object",
+                              "properties": {
+                                "concept_id": {
+                                  "type": "string",
+                                  "description": "concept_id"
+                                },
+                                "labels_for_languages": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "language": {
+                                        "type": "string",
+                                        "description": "language"
+                                      },
+                                      "primary_label": {
+                                        "type": "string",
+                                        "description": "primary_label"
+                                      },
+                                      "labels": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "string"
+                                        },
+                                        "description": "labels"
+                                      },
+                                      "description": {
+                                        "type": "string",
+                                        "description": "description"
+                                      },
+                                      "description_type": {
+                                        "type": "string",
+                                        "description": "description_type"
+                                      }
+                                    }
+                                  },
+                                  "description": "labels_for_languages"
+                                }
+                              },
+                              "description": "concept"
+                            }
+                          }
+                        },
+                        "description": "concept_scores"
+                      }
+                    }
+                  },
+                  "description": "experts"
+                },
+                "label_matches": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "title": "",
+                    "x-ms-visibility": "advanced"
+                  },
+                  "description": "label_matches"
+                },
+                "search_tracking_id": {
+                  "type": "string",
+                  "description": "search_tracking_id",
+                  "title": "",
+                  "x-ms-visibility": "advanced"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Find experts",
+        "description": "Finds experts based on the provided context",
+        "operationId": "FindExpert",
+        "x-ms-visibility": "important",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text_query": {
+                  "type": "string",
+                  "description": "The text to find experts for",
+                  "title": "",
+                  "x-ms-visibility": "important"
+                }
+              },
+              "required": ["text_query"],
+              "x-ms-visibility": "important"
+            },
+            "x-ms-visibility": "important"
+          }
+        ],
+        "x-ms-openai-data": {
+          "openai-enabled": false,
+          "operations": [
+            {
+              "operationId": "FindExpert",
+              "x-ms-require-user-confirmation": true
+            }
+          ]
+        }
+      }
+    },
+    "/accounts/api/v1/graphql": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Returns the user object for the specified globalUserId.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "location": {
+                          "type": "string",
+                          "description": "location"
+                        },
+                        "email": {
+                          "type": "string",
+                          "description": "email"
+                        },
+                        "avatarUrl": {
+                          "type": "string",
+                          "description": "avatarUrl"
+                        },
+                        "firstname": {
+                          "type": "string",
+                          "description": "firstname"
+                        },
+                        "__typename": {
+                          "type": "string",
+                          "description": "__typename"
+                        },
+                        "lastname": {
+                          "type": "string",
+                          "description": "lastname"
+                        },
+                        "countryId": {
+                          "type": "string",
+                          "description": "countryId"
+                        },
+                        "globalUserId": {
+                          "type": "string",
+                          "description": "globalUserId"
+                        },
+                        "position": {
+                          "type": "string",
+                          "description": "position"
+                        },
+                        "company": {
+                          "type": "string",
+                          "description": "company"
+                        },
+                        "department": {
+                          "type": "string",
+                          "description": "department"
+                        }
+                      },
+                      "description": "user"
+                    }
+                  },
+                  "description": "data"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Find user by id",
+        "description": "Resolves the globalUserId to user object",
+        "operationId": "ResolveUser",
+        "x-ms-visibility": "important",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "query": {
+                  "type": "string",
+                  "description": "query"
+                },
+                "variables": {
+                  "type": "object",
+                  "properties": {
+                    "globalUserId": {
+                      "type": "string",
+                      "description": "globalUserId"
+                    }
+                  },
+                  "description": "variables"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {},
+  "parameters": {},
+  "responses": {},
+  "securityDefinitions": {
+    "apiKey": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization"
+    }
+  },
+  "security": [
+    {
+      "apiKey": []
+    }
+  ],
+  "tags": [],
+  "x-ms-capabilities": {
+    "testConnection": {
+      "operationId": "FindQuestion",
+      "parameters": {
+        "limit": 1
+      }
+    }
+  },
+  "x-ms-openai-manifest": {
+    "humanName": "Starmind",
+    "modelDescription": "Search for questions and answers (Q&A) in the internal Starmind knowledge network. This data source contains highly trustworthy solutions authored by subject matter experts. By default, results are sorted by relevance. The data source provided by Starmind is meticulously verified by experts for reliability and continuously updated to ensure accuracy and timeliness. Answers are rated from 1 to 5 stars, with 4 to 5 stars indicating a very high-quality solution.",
+    "contactEmail": "product@starmind.com",
+    "legalUrl": "https://www.starmind.ai/terms-of-use"
+  }
+}
