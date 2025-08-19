@@ -701,7 +701,8 @@
               "properties": {
                 "query": {
                   "type": "string",
-                  "description": "query"
+                  "description": "query",
+                  "example": "query getUser($globalUserId: UUID!) { user(globalUserId: $globalUserId) { globalUserId firstname lastname email languageId avatarUrl company department position location about countryId created dateDeleted isFederated } }"
                 },
                 "variables": {
                   "type": "object",
