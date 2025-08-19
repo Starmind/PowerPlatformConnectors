@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Starmind Dev",
-    "description": "The Starmind Connector enables seamless integration with Starmind\u2019s knowledge engine, allowing users to access verified answers and expert insights across their organisation. By connecting to Starmind, your workflows and agents can intelligently retrieve responses to business-critical questions, surface expert knowledge, and streamline decision-making processes.",
+    "title": "Starmind",
+    "description": "The Starmind Connector enables seamless integration with Starmind's knowledge engine, allowing users to access verified answers and expert insights across their organisation. By connecting to Starmind, your workflows and agents can intelligently retrieve responses to business-critical questions, surface expert knowledge, and streamline decision-making processes.",
     "version": "1.0",
     "contact": {
       "name": "Starmind technical support experts are ready to listen and help",
@@ -752,3 +752,4 @@
     "legalUrl": "https://www.starmind.ai/terms-of-use"
   }
 }
+
