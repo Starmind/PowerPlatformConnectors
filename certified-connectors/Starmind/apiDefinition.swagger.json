@@ -26,9 +26,15 @@
   ],
   "host": "yournetwork.starmind.com",
   "basePath": "/",
-  "schemes": ["https"],
-  "consumes": ["application/json"],
-  "produces": ["application/json"],
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
   "paths": {
     "/api/v1/questions": {
       "get": {
@@ -88,27 +94,6 @@
                         "type": "integer",
                         "format": "int32",
                         "description": "upvote_count"
-                      },
-                      "translations": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "description": {
-                              "type": "string",
-                              "description": "description"
-                            },
-                            "language": {
-                              "type": "string",
-                              "description": "language"
-                            },
-                            "title": {
-                              "type": "string",
-                              "description": "title"
-                            }
-                          }
-                        },
-                        "description": "translations"
                       },
                       "view_count": {
                         "type": "integer",
@@ -172,10 +157,6 @@
                       "language": {
                         "type": "string",
                         "description": "language"
-                      },
-                      "attachments": {
-                        "type": "string",
-                        "description": "attachments"
                       }
                     }
                   },
@@ -320,16 +301,12 @@
                   "description": "the id of the knowledge space to assign the question to",
                   "title": "",
                   "x-ms-visibility": "advanced"
-                },
-                "category": {
-                  "type": "string",
-                  "description": "If this field is omitted, the question will be uncategorized.",
-                  "title": "",
-                  "x-ms-visibility": "advanced"
                 }
               },
               "x-ms-visibility": "important",
-              "required": ["title"]
+              "required": [
+                "title"
+              ]
             },
             "x-ms-visibility": "important"
           }
@@ -348,11 +325,6 @@
                   "type": "integer",
                   "format": "int32",
                   "description": "upvote_count"
-                },
-                "translations": {
-                  "type": "array",
-                  "items": {},
-                  "description": "translations"
                 },
                 "view_count": {
                   "type": "integer",
@@ -474,6 +446,155 @@
           "operations": [
             {
               "operationId": "PublishQuestion",
+              "x-ms-require-user-confirmation": true
+            }
+          ]
+        }
+      }
+    },
+    "/api/v1/questions/{questionId}/complete": {
+      "get": {
+        "summary": "Get complete question details",
+        "description": "Retrieves the complete details for a specific question, including solutions, comments, and concepts.",
+        "operationId": "GetQuestion",
+        "x-ms-visibility": "important",
+        "parameters": [
+          {
+            "name": "questionId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "The ID of the question to retrieve",
+            "x-ms-summary": "ID of the question",
+            "x-ms-url-encoding": "single",
+            "x-ms-visibility": "important"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Complete question details",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "source": {
+                  "type": "string",
+                  "description": "source"
+                },
+                "view_count": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "view_count"
+                },
+                "image": {
+                  "type": "string",
+                  "description": "image"
+                },
+                "published": {
+                  "type": "string",
+                  "description": "published"
+                },
+                "is_deleted": {
+                  "type": "boolean",
+                  "description": "is_deleted"
+                },
+                "concepts": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Concept"
+                  },
+                  "description": "concepts"
+                },
+                "slug": {
+                  "type": "string",
+                  "description": "slug"
+                },
+                "knowledge_space": {
+                  "type": "string",
+                  "description": "knowledge_space"
+                },
+                "title": {
+                  "type": "string",
+                  "description": "title"
+                },
+                "last_seen": {
+                  "type": "string",
+                  "description": "last_seen"
+                },
+                "is_published": {
+                  "type": "boolean",
+                  "description": "is_published"
+                },
+                "upvote_count": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "upvote_count"
+                },
+                "solutions": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Solution"
+                  },
+                  "description": "solutions"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "description"
+                },
+                "solution_count": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "solution_count"
+                },
+                "content_updated": {
+                  "type": "string",
+                  "description": "content_updated"
+                },
+                "id": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "id"
+                },
+                "updated": {
+                  "type": "string",
+                  "description": "updated"
+                },
+                "language": {
+                  "type": "string",
+                  "description": "language"
+                },
+                "last_activity": {
+                  "type": "string",
+                  "description": "last_activity"
+                },
+                "is_mine": {
+                  "type": "boolean",
+                  "description": "is_mine"
+                },
+                "attachments": {
+                  "type": "array",
+                  "items": {},
+                  "description": "attachments"
+                },
+                "created": {
+                  "type": "string",
+                  "description": "created"
+                },
+                "comments": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Comment"
+                  },
+                  "description": "comments"
+                }
+              }
+            }
+          }
+        },
+        "x-ms-openai-data": {
+          "openai-enabled": true,
+          "operations": [
+            {
+              "operationId": "GetQuestion",
               "x-ms-require-user-confirmation": true
             }
           ]
@@ -630,7 +751,9 @@
                   "x-ms-visibility": "important"
                 }
               },
-              "required": ["text_query"],
+              "required": [
+                "text_query"
+              ],
               "x-ms-visibility": "important"
             },
             "x-ms-visibility": "important"
@@ -659,54 +782,7 @@
                   "type": "object",
                   "properties": {
                     "user": {
-                      "type": "object",
-                      "properties": {
-                        "location": {
-                          "type": "string",
-                          "description": "location"
-                        },
-                        "email": {
-                          "type": "string",
-                          "description": "email"
-                        },
-                        "avatarUrl": {
-                          "type": "string",
-                          "description": "avatarUrl"
-                        },
-                        "firstname": {
-                          "type": "string",
-                          "description": "firstname"
-                        },
-                        "__typename": {
-                          "type": "string",
-                          "description": "__typename"
-                        },
-                        "lastname": {
-                          "type": "string",
-                          "description": "lastname"
-                        },
-                        "countryId": {
-                          "type": "string",
-                          "description": "countryId"
-                        },
-                        "globalUserId": {
-                          "type": "string",
-                          "description": "globalUserId"
-                        },
-                        "position": {
-                          "type": "string",
-                          "description": "position"
-                        },
-                        "company": {
-                          "type": "string",
-                          "description": "company"
-                        },
-                        "department": {
-                          "type": "string",
-                          "description": "department"
-                        }
-                      },
-                      "description": "user"
+                      "$ref": "#/definitions/User"
                     }
                   },
                   "description": "data"
@@ -749,7 +825,275 @@
       }
     }
   },
-  "definitions": {},
+  "definitions": {
+    "Concept": {
+      "type": "object",
+      "properties": {
+        "concept_id": {
+          "type": "string",
+          "description": "concept_id"
+        },
+        "description": {
+          "type": "string",
+          "description": "description"
+        },
+        "is_flat": {
+          "type": "boolean",
+          "description": "is_flat"
+        },
+        "label_match": {
+          "type": "string",
+          "description": "label_match"
+        },
+        "language": {
+          "type": "string",
+          "description": "language"
+        },
+        "ontology_id": {
+          "type": "string",
+          "description": "ontology_id"
+        },
+        "primary_label": {
+          "type": "string",
+          "description": "primary_label"
+        }
+      }
+    },
+    "Attachment": {
+      "type": "object",
+      "properties": {
+        "created": {
+          "type": "string",
+          "description": "created"
+        },
+        "hash": {
+          "type": "string",
+          "description": "hash"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "id"
+        },
+        "link": {
+          "type": "string",
+          "description": "link"
+        },
+        "mime_type": {
+          "type": "string",
+          "description": "mime_type"
+        },
+        "name": {
+          "type": "string",
+          "description": "name"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32",
+          "description": "size"
+        }
+      }
+    },
+    "Comment": {
+      "type": "object",
+      "properties": {
+        "content_updated": {
+          "type": "string",
+          "description": "content_updated"
+        },
+        "created": {
+          "type": "string",
+          "description": "created"
+        },
+        "description": {
+          "type": "string",
+          "description": "description"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "id"
+        },
+        "language": {
+          "type": "string",
+          "description": "language"
+        },
+        "updated": {
+          "type": "string",
+          "description": "updated"
+        },
+        "upvote_count": {
+          "type": "integer",
+          "format": "int32",
+          "description": "upvote_count"
+        },
+        "user": {
+          "$ref": "#/definitions/UserLegacy"
+        }
+      }
+    },
+    "Solution": {
+      "type": "object",
+      "properties": {
+        "accepted_by_question_poser": {
+          "type": "string",
+          "description": "accepted_by_question_poser"
+        },
+        "attachments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Attachment"
+          },
+          "description": "attachments"
+        },
+        "comments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Comment"
+          },
+          "description": "comments"
+        },
+        "content_updated": {
+          "type": "string",
+          "description": "content_updated"
+        },
+        "created": {
+          "type": "string",
+          "description": "created"
+        },
+        "date_deleted": {
+          "type": "string",
+          "description": "date_deleted"
+        },
+        "description": {
+          "type": "string",
+          "description": "description"
+        },
+        "expires": {
+          "type": "string",
+          "description": "expires"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "id"
+        },
+        "is_published": {
+          "type": "boolean",
+          "description": "is_published"
+        },
+        "language": {
+          "type": "string",
+          "description": "language"
+        },
+        "published": {
+          "type": "string",
+          "description": "published"
+        },
+        "rating_count": {
+          "type": "integer",
+          "format": "int32",
+          "description": "rating_count"
+        },
+        "solution_authority_approval": {
+          "type": "string",
+          "description": "solution_authority_approval"
+        },
+        "updated": {
+          "type": "string",
+          "description": "updated"
+        },
+        "upvote_count": {
+          "type": "integer",
+          "format": "int32",
+          "description": "upvote_count"
+        },
+        "user": {
+          "$ref": "#/definitions/UserLegacy"
+        },
+        "validated": {
+          "type": "string",
+          "description": "validated"
+        },
+        "validity_period": {
+          "type": "string",
+          "description": "validity_period"
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "location": {
+          "type": "string",
+          "description": "location"
+        },
+        "email": {
+          "type": "string",
+          "description": "email"
+        },
+        "avatarUrl": {
+          "type": "string",
+          "description": "avatarUrl"
+        },
+        "firstname": {
+          "type": "string",
+          "description": "firstname"
+        },
+        "lastname": {
+          "type": "string",
+          "description": "lastname"
+        },
+        "countryId": {
+          "type": "string",
+          "description": "countryId"
+        },
+        "globalUserId": {
+          "type": "string",
+          "description": "globalUserId"
+        },
+        "position": {
+          "type": "string",
+          "description": "position"
+        },
+        "company": {
+          "type": "string",
+          "description": "company"
+        },
+        "department": {
+          "type": "string",
+          "description": "department"
+        }
+      },
+      "description": "user"
+    },
+    "UserLegacy": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "email"
+        },
+        "globalUserId": {
+          "type": "string",
+          "description": "global_user_id"
+        },
+        "image": {
+          "type": "string",
+          "description": "image"
+        },
+        "firstname": {
+          "type": "string",
+          "description": "firstname"
+        },
+        "lastname": {
+          "type": "string",
+          "description": "lastname"
+        }
+      },
+      "description": "user"
+    }
+  },
   "parameters": {},
   "responses": {},
   "securityDefinitions": {
