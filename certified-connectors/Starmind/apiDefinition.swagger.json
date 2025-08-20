@@ -493,8 +493,7 @@
                   "description": "concepts"
                 },
                 "knowledge_space": {
-                  "type": "string",
-                  "description": "knowledge_space"
+                  "$ref": "#/definitions/KnowledgeSpace"
                 },
                 "title": {
                   "type": "string",
@@ -1068,6 +1067,46 @@
         }
       },
       "description": "user"
+    },
+    "KnowledgeSpace": {
+      "type": "object",
+      "properties": {
+        "automatic_new_user_assignment": {
+          "type": "boolean",
+          "description": "Indicates if new users are automatically assigned"
+        },
+        "created": {
+          "type": "string",
+          "description": "Creation timestamp"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the knowledge space"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Unique identifier of the knowledge space"
+        },
+        "is_closed": {
+          "type": "boolean",
+          "description": "Indicates if the knowledge space is non public"
+        },
+        "member_count": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Number of members"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the knowledge space"
+        },
+        "updated": {
+          "type": "string",
+          "description": "Last updated timestamp"
+        }
+      },
+      "description": "knowledge_space"
     }
   },
   "parameters": {},
