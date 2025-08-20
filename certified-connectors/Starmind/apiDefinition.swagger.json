@@ -567,9 +567,37 @@
                 "label_matches": {
                   "type": "array",
                   "items": {
-                    "type": "string",
-                    "title": "",
-                    "x-ms-visibility": "advanced"
+                    "type": "object",
+                    "properties": {
+                      "concept_id": {
+                        "type": "string",
+                        "description": "Concept unique identifier"
+                      },
+                      "ontology_id": {
+                        "type": "string",
+                        "description": "Ontology identifier"
+                      },
+                      "is_flat": {
+                        "type": "boolean",
+                        "description": "Indicates if the concept is flat"
+                      },
+                      "language": {
+                        "type": "string",
+                        "description": "Language code"
+                      },
+                      "label_match": {
+                        "type": "string",
+                        "description": "Matched label"
+                      },
+                      "primary_label": {
+                        "type": "string",
+                        "description": "Primary label"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "Description of the concept"
+                      }
+                    }
                   },
                   "description": "label_matches"
                 },
