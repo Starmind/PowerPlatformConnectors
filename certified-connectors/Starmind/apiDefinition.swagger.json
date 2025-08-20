@@ -24,11 +24,11 @@
       "propertyValue": "Productivity;Collaboration"
     }
   ],
-  "host": "starmind.com",
+  "host": "yournetwork.starmind.com",
   "basePath": "/",
   "schemes": ["https"],
   "consumes": ["application/json"],
-  "produces": [],
+  "produces": ["application/json"],
   "paths": {
     "/api/v1/questions": {
       "get": {

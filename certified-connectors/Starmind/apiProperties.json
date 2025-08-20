@@ -27,9 +27,6 @@
         }
       }
     },
-    "connectionParameterSets": {
-      "values": []
-    },
     "policyTemplateInstances": [
       {
         "templateId": "setheader",
@@ -43,7 +40,7 @@
       },
       {
         "templateId": "dynamichosturl",
-        "title": "Apply hostUrl as configured",
+        "title": "Apply configured sm_baseUrl to all requests",
         "parameters": {
           "x-ms-apimTemplateParameter.urlTemplate": "https://@connectionParameters('sm_BaseUrl')"
         }
