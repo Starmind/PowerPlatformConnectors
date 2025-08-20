@@ -331,10 +331,6 @@
                   "format": "int32",
                   "description": "view_count"
                 },
-                "image": {
-                  "type": "string",
-                  "description": "image"
-                },
                 "published": {
                   "type": "string",
                   "description": "published"
@@ -342,10 +338,6 @@
                 "is_deleted": {
                   "type": "boolean",
                   "description": "is_deleted"
-                },
-                "slug": {
-                  "type": "string",
-                  "description": "slug"
                 },
                 "title": {
                   "type": "string",
@@ -485,10 +477,6 @@
                   "format": "int32",
                   "description": "view_count"
                 },
-                "image": {
-                  "type": "string",
-                  "description": "image"
-                },
                 "published": {
                   "type": "string",
                   "description": "published"
@@ -504,10 +492,6 @@
                   },
                   "description": "concepts"
                 },
-                "slug": {
-                  "type": "string",
-                  "description": "slug"
-                },
                 "knowledge_space": {
                   "type": "string",
                   "description": "knowledge_space"
@@ -515,10 +499,6 @@
                 "title": {
                   "type": "string",
                   "description": "title"
-                },
-                "last_seen": {
-                  "type": "string",
-                  "description": "last_seen"
                 },
                 "is_published": {
                   "type": "boolean",
@@ -565,10 +545,6 @@
                 "last_activity": {
                   "type": "string",
                   "description": "last_activity"
-                },
-                "is_mine": {
-                  "type": "boolean",
-                  "description": "is_mine"
                 },
                 "attachments": {
                   "type": "array",
