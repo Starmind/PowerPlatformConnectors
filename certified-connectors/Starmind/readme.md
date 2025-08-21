@@ -19,6 +19,9 @@ Finds experts based on the provided content.
 ### FindQuestion
 Finds questions based on the provided query parameters.
 
+### GetQuestion
+Retrieves the complete details for a question, including solutions, comments, and concepts by its ID.
+
 ### PostQuestion
 Creates a new question draft.
 
