@@ -83,90 +83,9 @@
                 "items": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "properties": {
-                      "knowledge_space_id": {
-                        "type": "integer",
-                        "format": "int32",
-                        "description": "knowledge_space_id"
-                      },
-                      "upvote_count": {
-                        "type": "integer",
-                        "format": "int32",
-                        "description": "upvote_count"
-                      },
-                      "view_count": {
-                        "type": "integer",
-                        "format": "int32",
-                        "description": "view_count"
-                      },
-                      "image": {
-                        "type": "string",
-                        "description": "image"
-                      },
-                      "published": {
-                        "type": "string",
-                        "format": "date-time",
-                        "x-ms-summary": "Published date",
-                        "description": "Timestamp indicating when the question was published (yyyy-MM-ddTHH:mm:ss.fffZ)"
-                      },
-                      "is_deleted": {
-                        "type": "boolean",
-                        "description": "indicates if the question is deleted. Deleted questions are not visible to users, but can still be accessed by the administrators."
-                      },
-                      "title": {
-                        "type": "string",
-                        "description": "The question title"
-                      },
-                      "last_activity": {
-                        "type": "string",
-                        "format": "date-time",
-                        "x-ms-summary": "Last activity date",
-                        "description": "Timestamp indicating the last activity with the question (yyyy-MM-ddTHH:mm:ss.fffZ)"
-                      },
-                      "is_published": {
-                        "type": "boolean",
-                        "description": "The question is_published flag indicates whether the question is published or not. A published solution is visible to all users, while an unpublished solution is in draft state only visible to the author."
-                      },
-                      "created": {
-                        "type": "string",
-                        "format": "date-time",
-                        "x-ms-summary": "Created date",
-                        "description": "Timestamp indicating when the question was created (yyyy-MM-ddTHH:mm:ss.fffZ)"
-                      },
-                      "description": {
-                        "type": "string",
-                        "description": "Question description providing detailed context and information about the question"
-                      },
-                      "solution_count": {
-                        "type": "integer",
-                        "format": "int32",
-                        "description": "solution_count"
-                      },
-                      "content_updated": {
-                        "type": "string",
-                        "format": "date-time",
-                        "x-ms-summary": "Content updated date",
-                        "description": "Timestamp indicating when the question's content or attachments were last updated (yyyy-MM-ddTHH:mm:ss.fffZ)"
-                      },
-                      "id": {
-                        "type": "integer",
-                        "format": "int32",
-                        "description": "the unique question id"
-                      },
-                      "updated": {
-                        "type": "string",
-                        "format": "date-time",
-                        "x-ms-summary": "question updated date",
-                        "description": "Last time the resource has been updated in the DB. This date does not reflect content updates but any update to any fields of the record. Use content_updated for information about content updates."
-                      },
-                      "language": {
-                        "type": "string",
-                        "description": "The question language"
-                      }
-                    }
+                    "$ref": "#/definitions/Question"
                   },
-                  "description": "items"
+                  "description": "Results of the question search"
                 },
                 "total": {
                   "type": "integer",
@@ -321,87 +240,7 @@
           "200": {
             "description": "Question draft created, successfully",
             "schema": {
-              "type": "object",
-              "properties": {
-                "knowledge_space_id": {
-                  "type": "string",
-                  "description": "knowledge_space_id"
-                },
-                "upvote_count": {
-                  "type": "integer",
-                  "format": "int32",
-                  "description": "upvote_count"
-                },
-                "view_count": {
-                  "type": "integer",
-                  "format": "int32",
-                  "description": "view_count"
-                },
-                "published": {
-                  "type": "string",
-                  "format": "date-time",
-                  "x-ms-summary": "Published date",
-                  "description": "Timestamp indicating when the question was published (yyyy-MM-ddTHH:mm:ss.fffZ)"
-                },
-                "is_deleted": {
-                  "type": "boolean",
-                  "description": "indicates if the question is deleted. Deleted questions are not visible to users, but can still be accessed by the administrators."
-                },
-                "title": {
-                  "type": "string",
-                  "description": "The question title"
-                },
-                "last_activity": {
-                  "type": "string",
-                  "format": "date-time",
-                  "x-ms-summary": "Last activity date",
-                  "description": "Timestamp indicating the last activity with the question (yyyy-MM-ddTHH:mm:ss.fffZ)"
-                },
-                "attachments": {
-                  "type": "string",
-                  "description": "attachments"
-                },
-                "is_published": {
-                  "type": "boolean",
-                  "description": "The question is_published flag indicates whether the question is published or not. A published solution is visible to all users, while an unpublished solution is in draft state only visible to the author."
-                },
-                "created": {
-                  "type": "string",
-                  "format": "date-time",
-                  "x-ms-summary": "Created date",
-                  "description": "Timestamp indicating when the question was created (yyyy-MM-ddTHH:mm:ss.fffZ)"
-                },
-                "description": {
-                  "type": "string",
-                  "description": "description"
-                },
-                "solution_count": {
-                  "type": "integer",
-                  "format": "int32",
-                  "description": "solution_count"
-                },
-                "content_updated": {
-                  "type": "string",
-                  "format": "date-time",
-                  "x-ms-summary": "Content updated date",
-                  "description": "Timestamp indicating when the question's content or attachments were last updated (yyyy-MM-ddTHH:mm:ss.fffZ)"
-                },
-                "id": {
-                  "type": "integer",
-                  "format": "int32",
-                  "description": "the unique question id"
-                },
-                "updated": {
-                  "type": "string",
-                  "format": "date-time",
-                  "x-ms-summary": "question updated date",
-                  "description": "Last time the resource has been updated in the DB. This date does not reflect content updates but any update to any fields of the record. Use content_updated for information about content updates."
-                },
-                "language": {
-                  "type": "string",
-                  "description": "The question language"
-                }
-              }
+              "$ref": "#/definitions/Question"
             }
           }
         },
@@ -823,6 +662,86 @@
     }
   },
   "definitions": {
+    "Question": {
+      "type": "object",
+      "properties": {
+        "knowledge_space_id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The unique knowledge space id to which the question belongs."
+        },
+        "upvote_count": {
+          "type": "integer",
+          "format": "int32",
+          "description": "upvote_count"
+        },
+        "view_count": {
+          "type": "integer",
+          "format": "int32",
+          "description": "view_count"
+        },
+        "published": {
+          "type": "string",
+          "format": "date-time",
+          "x-ms-summary": "Published date",
+          "description": "Timestamp indicating when the question was published (yyyy-MM-ddTHH:mm:ss.fffZ)"
+        },
+        "is_deleted": {
+          "type": "boolean",
+          "description": "indicates if the question is deleted. Deleted questions are not visible to users, but can still be accessed by the administrators."
+        },
+        "title": {
+          "type": "string",
+          "description": "The question title"
+        },
+        "last_activity": {
+          "type": "string",
+          "format": "date-time",
+          "x-ms-summary": "Last activity date",
+          "description": "Timestamp indicating the last activity with the question (yyyy-MM-ddTHH:mm:ss.fffZ)"
+        },
+        "is_published": {
+          "type": "boolean",
+          "description": "The question is_published flag indicates whether the question is published or not. A published solution is visible to all users, while an unpublished solution is in draft state only visible to the author."
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time",
+          "x-ms-summary": "Created date",
+          "description": "Timestamp indicating when the question was created (yyyy-MM-ddTHH:mm:ss.fffZ)"
+        },
+        "description": {
+          "type": "string",
+          "description": "Question description providing detailed context and information about the question"
+        },
+        "solution_count": {
+          "type": "integer",
+          "format": "int32",
+          "description": "solution_count"
+        },
+        "content_updated": {
+          "type": "string",
+          "format": "date-time",
+          "x-ms-summary": "Content updated date",
+          "description": "Timestamp indicating when the question's content or attachments were last updated (yyyy-MM-ddTHH:mm:ss.fffZ)"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "the unique question id"
+        },
+        "updated": {
+          "type": "string",
+          "format": "date-time",
+          "x-ms-summary": "question updated date",
+          "description": "Last time the resource has been updated in the DB. This date does not reflect content updates but any update to any fields of the record. Use content_updated for information about content updates."
+        },
+        "language": {
+          "type": "string",
+          "description": "The question language"
+        }
+      }
+    },
     "Concept": {
       "type": "object",
       "properties": {
