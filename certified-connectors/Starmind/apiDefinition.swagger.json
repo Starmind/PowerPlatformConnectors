@@ -536,12 +536,12 @@
         "upvote_count": {
           "type": "integer",
           "format": "int32",
-          "description": "upvote_count"
+          "description": "The total number of upvotes the question has received."
         },
         "view_count": {
           "type": "integer",
           "format": "int32",
-          "description": "view_count"
+          "description": "The number of times the question has been viewed by users."
         },
         "published": {
           "type": "string",
@@ -551,7 +551,7 @@
         },
         "is_deleted": {
           "type": "boolean",
-          "description": "indicates if the question is deleted. Deleted questions are not visible to users, but can still be accessed by the administrators."
+          "description": "Indicates if the question is deleted. Deleted questions are not visible to users, but can still be accessed by the administrators."
         },
         "title": {
           "type": "string",
@@ -580,7 +580,7 @@
         "solution_count": {
           "type": "integer",
           "format": "int32",
-          "description": "solution_count"
+          "description": "This is the number of solutions that have been provided for this question."
         },
         "content_updated": {
           "type": "string",
@@ -591,7 +591,7 @@
         "id": {
           "type": "integer",
           "format": "int32",
-          "description": "the unique question id"
+          "description": "The unique question id"
         },
         "updated": {
           "type": "string",
@@ -745,7 +745,7 @@
         "id": {
           "type": "integer",
           "format": "int32",
-          "description": "the unique comment id"
+          "description": "The unique comment id"
         },
         "language": {
           "type": "string",
@@ -760,7 +760,7 @@
         "upvote_count": {
           "type": "integer",
           "format": "int32",
-          "description": "upvote_count"
+          "description": "The number of upvotes the comment has received."
         },
         "user": {
           "$ref": "#/definitions/UserLegacy"
@@ -834,7 +834,7 @@
         "rating_count": {
           "type": "integer",
           "format": "int32",
-          "description": "rating_count"
+          "description": "Total number of ratings for the solution."
         },
         "solution_authority_approval": {
           "$ref": "#/definitions/SolutionAuthorityApproval"
@@ -848,7 +848,7 @@
         "upvote_count": {
           "type": "integer",
           "format": "int32",
-          "description": "Total number of likes for the solution."
+          "description": "The total number of upvotes the solution has received."
         },
         "user": {
           "$ref": "#/definitions/UserLegacy",
@@ -859,7 +859,7 @@
         },
         "validity_period": {
           "type": "string",
-          "description": "validity period until the solution is considered expired"
+          "description": "Validity period until the solution is considered expired"
         }
       }
     },
@@ -868,15 +868,15 @@
       "properties": {
         "revalidatedAt": {
           "type": "string",
-          "description": "date when the solution was revalidated"
+          "description": "The date when the solution was revalidated"
         },
         "validityPeriod": {
           "type": "string",
-          "description": "validity period until the solution is considered expired"
+          "description": "The validity period until the solution is considered expired"
         },
         "user": {
           "$ref": "#/definitions/UserLegacy",
-          "description": "user who validated the solution"
+          "description": "The user who validated the solution"
         }
       },
       "description": "solution validation object containing information about the validation status of the solution"
@@ -997,7 +997,7 @@
         "id": {
           "type": "integer",
           "format": "int32",
-          "description": "the unique knowledge space id"
+          "description": "The unique knowledge space id"
         },
         "is_closed": {
           "type": "boolean",
