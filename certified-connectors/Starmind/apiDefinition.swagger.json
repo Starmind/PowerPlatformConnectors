@@ -987,14 +987,42 @@
           "$ref": "#/definitions/UserLegacy"
         },
         "validated": {
-          "type": "string",
-          "description": "validated"
+          "$ref": "#/definitions/SolutionValidation"
         },
         "validity_period": {
           "type": "string",
           "description": "validity_period"
         }
       }
+    },
+    "SolutionValidation": {
+      "type": "object",
+      "properties": {
+        "revalidatedAt": {
+          "type": "string",
+          "description": "revalidated_at"
+        },
+        "validityPeriod": {
+          "type": "string",
+          "description": "revalidatvalidity_perioded_at"
+        },
+        "user": {
+          "$ref": "#/definitions/UserLegacy"
+        },
+        "image": {
+          "type": "string",
+          "description": "image"
+        },
+        "firstname": {
+          "type": "string",
+          "description": "firstname"
+        },
+        "lastname": {
+          "type": "string",
+          "description": "lastname"
+        }
+      },
+      "description": "validated"
     },
     "User": {
       "type": "object",
