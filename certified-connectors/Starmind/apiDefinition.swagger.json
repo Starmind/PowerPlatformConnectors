@@ -321,114 +321,7 @@
           "200": {
             "description": "Complete question details",
             "schema": {
-              "type": "object",
-              "properties": {
-                "source": {
-                  "type": "string",
-                  "description": "source"
-                },
-                "view_count": {
-                  "type": "integer",
-                  "format": "int32",
-                  "description": "view_count"
-                },
-                "published": {
-                  "type": "string",
-                  "format": "date-time",
-                  "x-ms-summary": "Published date",
-                  "description": "Timestamp indicating when the question was published (yyyy-MM-ddTHH:mm:ss.fffZ)"
-                },
-                "is_deleted": {
-                  "type": "boolean",
-                  "description": "indicates if the question is deleted. Deleted questions are not visible to users, but can still be accessed by the administrators."
-                },
-                "concepts": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/Concept"
-                  },
-                  "description": "concepts"
-                },
-                "knowledge_space": {
-                  "$ref": "#/definitions/KnowledgeSpace"
-                },
-                "title": {
-                  "type": "string",
-                  "description": "The question title"
-                },
-                "is_published": {
-                  "type": "boolean",
-                  "description": "The question is_published flag indicates whether the question is published or not. A published solution is visible to all users, while an unpublished solution is in draft state only visible to the author."
-                },
-                "upvote_count": {
-                  "type": "integer",
-                  "format": "int32",
-                  "description": "upvote_count"
-                },
-                "solutions": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/Solution"
-                  },
-                  "description": "solutions"
-                },
-                "description": {
-                  "type": "string",
-                  "description": "description"
-                },
-                "solution_count": {
-                  "type": "integer",
-                  "format": "int32",
-                  "description": "solution_count"
-                },
-                "content_updated": {
-                  "type": "string",
-                  "format": "date-time",
-                  "x-ms-summary": "Content updated date",
-                  "description": "Timestamp indicating when the question's content or attachments were last updated (yyyy-MM-ddTHH:mm:ss.fffZ)"
-                },
-                "id": {
-                  "type": "integer",
-                  "format": "int32",
-                  "description": "the unique question id"
-                },
-                "updated": {
-                  "type": "string",
-                  "format": "date-time",
-                  "x-ms-summary": "question updated date",
-                  "description": "Last time the resource has been updated in the DB. This date does not reflect content updates but any update to any fields of the record. Use content_updated for information about content updates."
-                },
-                "language": {
-                  "type": "string",
-                  "description": "language"
-                },
-                "last_activity": {
-                  "type": "string",
-                  "format": "date-time",
-                  "x-ms-summary": "Last activity date",
-                  "description": "Timestamp indicating the last activity with the question (yyyy-MM-ddTHH:mm:ss.fffZ)"
-                },
-                "attachments": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/Attachment"
-                  },
-                  "description": "The question attachments"
-                },
-                "created": {
-                  "type": "string",
-                  "format": "date-time",
-                  "x-ms-summary": "Created date",
-                  "description": "Timestamp indicating when the question was created (yyyy-MM-ddTHH:mm:ss.fffZ)"
-                },
-                "comments": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/Comment"
-                  },
-                  "description": "comments"
-                }
-              }
+              "$ref": "#/definitions/QuestionComplete"
             }
           }
         },
@@ -521,7 +414,7 @@
                             }
                           }
                         },
-                        "description": "concept_scores"
+                        "description": "Expert search concept matches including scores"
                       }
                     }
                   },
@@ -530,39 +423,9 @@
                 "label_matches": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "properties": {
-                      "concept_id": {
-                        "type": "string",
-                        "description": "Concept unique identifier"
-                      },
-                      "ontology_id": {
-                        "type": "string",
-                        "description": "Ontology identifier"
-                      },
-                      "is_flat": {
-                        "type": "boolean",
-                        "description": "Indicates if the concept is flat"
-                      },
-                      "language": {
-                        "type": "string",
-                        "description": "Language code"
-                      },
-                      "label_match": {
-                        "type": "string",
-                        "description": "Matched label"
-                      },
-                      "primary_label": {
-                        "type": "string",
-                        "description": "Primary label"
-                      },
-                      "description": {
-                        "type": "string",
-                        "description": "Description of the concept"
-                      }
-                    }
+                    "$ref": "#/definitions/ConceptLabelMatch"
                   },
-                  "description": "label_matches"
+                  "description": "The matched labels for the expert search query"
                 }
               }
             }
@@ -742,12 +605,60 @@
         }
       }
     },
-    "Concept": {
+    "QuestionComplete": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Question"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "source": {
+              "type": "string",
+              "description": "source"
+            },
+            "concepts": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ConceptLabelMatch"
+              },
+              "description": "The assigned question concepts"
+            },
+            "knowledge_space": {
+              "$ref": "#/definitions/KnowledgeSpace",
+              "description": "The assigned question knowledge space"
+            },
+            "solutions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Solution"
+              },
+              "description": "The question solutions"
+            },
+            "attachments": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Attachment"
+              },
+              "description": "The question attachments"
+            },
+            "comments": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Comment"
+              },
+              "description": "The question comments"
+            }
+          }
+        }
+      ]
+    },
+    "ConceptLabelMatch": {
       "type": "object",
       "properties": {
         "concept_id": {
           "type": "string",
-          "description": "concept_id"
+          "description": "The unique concept id"
         },
         "description": {
           "type": "string",
@@ -767,7 +678,7 @@
         },
         "ontology_id": {
           "type": "string",
-          "description": "ontology_id"
+          "description": "The unique ontology id to which the concept belongs"
         },
         "primary_label": {
           "type": "string",
@@ -861,7 +772,9 @@
       "properties": {
         "accepted_by_question_poser": {
           "type": "string",
-          "description": "accepted_by_question_poser"
+          "format": "date-time",
+          "x-ms-summary": "Solution accepted date",
+          "description": "Timestamp indicating whether the solution has been accepted by the question poser (yyyy-MM-ddTHH:mm:ss.fffZ)"
         },
         "attachments": {
           "type": "array",
@@ -875,7 +788,7 @@
           "items": {
             "$ref": "#/definitions/Comment"
           },
-          "description": "comments"
+          "description": "The solution comments"
         },
         "content_updated": {
           "type": "string",
@@ -939,7 +852,7 @@
         },
         "user": {
           "$ref": "#/definitions/UserLegacy",
-          "description": "user who created the solution"
+          "description": "The user who created the solution"
         },
         "validated": {
           "$ref": "#/definitions/SolutionValidation"
@@ -1106,7 +1019,7 @@
           "description": "Last time the resource has been updated in the DB."
         }
       },
-      "description": "knowledge_space"
+      "description": "The knowledge space object containing information about the knowledge space"
     }
   },
   "parameters": {},
