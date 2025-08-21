@@ -445,7 +445,7 @@
               "properties": {
                 "text_query": {
                   "type": "string",
-                  "description": "The text to find experts for",
+                  "description": "The text query to search for experts. This can be a question or a topic of interest.",
                   "title": "",
                   "x-ms-visibility": "important"
                 }
