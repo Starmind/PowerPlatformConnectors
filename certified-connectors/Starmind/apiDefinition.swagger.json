@@ -106,35 +106,37 @@
                       },
                       "published": {
                         "type": "string",
-                        "description": "published"
+                        "format": "date-time",
+                        "x-ms-summary": "Published date",
+                        "description": "Timestamp indicating when the question was published (yyyy-MM-ddTHH:mm:ss.fffZ)"
                       },
                       "is_deleted": {
                         "type": "boolean",
-                        "description": "is_deleted"
-                      },
-                      "slug": {
-                        "type": "string",
-                        "description": "slug"
+                        "description": "indicates if the question is deleted. Deleted questions are not visible to users, but can still be accessed by the administrators."
                       },
                       "title": {
                         "type": "string",
-                        "description": "title"
+                        "description": "The question title"
                       },
                       "last_activity": {
                         "type": "string",
-                        "description": "last_activity"
+                        "format": "date-time",
+                        "x-ms-summary": "Last activity date",
+                        "description": "Timestamp indicating the last activity with the question (yyyy-MM-ddTHH:mm:ss.fffZ)"
                       },
                       "is_published": {
                         "type": "boolean",
-                        "description": "is_published"
+                        "description": "The question is_published flag indicates whether the question is published or not. A published solution is visible to all users, while an unpublished solution is in draft state only visible to the author."
                       },
                       "created": {
                         "type": "string",
-                        "description": "created"
+                        "format": "date-time",
+                        "x-ms-summary": "Created date",
+                        "description": "Timestamp indicating when the question was created (yyyy-MM-ddTHH:mm:ss.fffZ)"
                       },
                       "description": {
                         "type": "string",
-                        "description": "description"
+                        "description": "Question description providing detailed context and information about the question"
                       },
                       "solution_count": {
                         "type": "integer",
@@ -143,20 +145,24 @@
                       },
                       "content_updated": {
                         "type": "string",
-                        "description": "content_updated"
+                        "format": "date-time",
+                        "x-ms-summary": "Content updated date",
+                        "description": "Timestamp indicating when the question's content or attachments were last updated (yyyy-MM-ddTHH:mm:ss.fffZ)"
                       },
                       "id": {
                         "type": "integer",
                         "format": "int32",
-                        "description": "id"
+                        "description": "the unique question id"
                       },
                       "updated": {
                         "type": "string",
-                        "description": "updated"
+                        "format": "date-time",
+                        "x-ms-summary": "question updated date",
+                        "description": "Last time the resource has been updated in the DB. This date does not reflect content updates but any update to any fields of the record. Use content_updated for information about content updates."
                       },
                       "language": {
                         "type": "string",
-                        "description": "language"
+                        "description": "The question language"
                       }
                     }
                   },
@@ -288,7 +294,7 @@
                 },
                 "description": {
                   "type": "string",
-                  "description": "question description"
+                  "description": "Question description providing detailed context and information about the question"
                 },
                 "language": {
                   "type": "string",
@@ -333,19 +339,23 @@
                 },
                 "published": {
                   "type": "string",
-                  "description": "published"
+                  "format": "date-time",
+                  "x-ms-summary": "Published date",
+                  "description": "Timestamp indicating when the question was published (yyyy-MM-ddTHH:mm:ss.fffZ)"
                 },
                 "is_deleted": {
                   "type": "boolean",
-                  "description": "is_deleted"
+                  "description": "indicates if the question is deleted. Deleted questions are not visible to users, but can still be accessed by the administrators."
                 },
                 "title": {
                   "type": "string",
-                  "description": "title"
+                  "description": "The question title"
                 },
                 "last_activity": {
                   "type": "string",
-                  "description": "last_activity"
+                  "format": "date-time",
+                  "x-ms-summary": "Last activity date",
+                  "description": "Timestamp indicating the last activity with the question (yyyy-MM-ddTHH:mm:ss.fffZ)"
                 },
                 "attachments": {
                   "type": "string",
@@ -353,11 +363,13 @@
                 },
                 "is_published": {
                   "type": "boolean",
-                  "description": "is_published"
+                  "description": "The question is_published flag indicates whether the question is published or not. A published solution is visible to all users, while an unpublished solution is in draft state only visible to the author."
                 },
                 "created": {
                   "type": "string",
-                  "description": "created"
+                  "format": "date-time",
+                  "x-ms-summary": "Created date",
+                  "description": "Timestamp indicating when the question was created (yyyy-MM-ddTHH:mm:ss.fffZ)"
                 },
                 "description": {
                   "type": "string",
@@ -370,20 +382,24 @@
                 },
                 "content_updated": {
                   "type": "string",
-                  "description": "content_updated"
+                  "format": "date-time",
+                  "x-ms-summary": "Content updated date",
+                  "description": "Timestamp indicating when the question's content or attachments were last updated (yyyy-MM-ddTHH:mm:ss.fffZ)"
                 },
                 "id": {
                   "type": "integer",
                   "format": "int32",
-                  "description": "id"
+                  "description": "the unique question id"
                 },
                 "updated": {
                   "type": "string",
-                  "description": "updated"
+                  "format": "date-time",
+                  "x-ms-summary": "question updated date",
+                  "description": "Last time the resource has been updated in the DB. This date does not reflect content updates but any update to any fields of the record. Use content_updated for information about content updates."
                 },
                 "language": {
                   "type": "string",
-                  "description": "language"
+                  "description": "The question language"
                 }
               }
             }
@@ -479,11 +495,13 @@
                 },
                 "published": {
                   "type": "string",
-                  "description": "published"
+                  "format": "date-time",
+                  "x-ms-summary": "Published date",
+                  "description": "Timestamp indicating when the question was published (yyyy-MM-ddTHH:mm:ss.fffZ)"
                 },
                 "is_deleted": {
                   "type": "boolean",
-                  "description": "is_deleted"
+                  "description": "indicates if the question is deleted. Deleted questions are not visible to users, but can still be accessed by the administrators."
                 },
                 "concepts": {
                   "type": "array",
@@ -497,11 +515,11 @@
                 },
                 "title": {
                   "type": "string",
-                  "description": "title"
+                  "description": "The question title"
                 },
                 "is_published": {
                   "type": "boolean",
-                  "description": "is_published"
+                  "description": "The question is_published flag indicates whether the question is published or not. A published solution is visible to all users, while an unpublished solution is in draft state only visible to the author."
                 },
                 "upvote_count": {
                   "type": "integer",
@@ -526,16 +544,20 @@
                 },
                 "content_updated": {
                   "type": "string",
-                  "description": "content_updated"
+                  "format": "date-time",
+                  "x-ms-summary": "Content updated date",
+                  "description": "Timestamp indicating when the question's content or attachments were last updated (yyyy-MM-ddTHH:mm:ss.fffZ)"
                 },
                 "id": {
                   "type": "integer",
                   "format": "int32",
-                  "description": "id"
+                  "description": "the unique question id"
                 },
                 "updated": {
                   "type": "string",
-                  "description": "updated"
+                  "format": "date-time",
+                  "x-ms-summary": "question updated date",
+                  "description": "Last time the resource has been updated in the DB. This date does not reflect content updates but any update to any fields of the record. Use content_updated for information about content updates."
                 },
                 "language": {
                   "type": "string",
@@ -543,16 +565,22 @@
                 },
                 "last_activity": {
                   "type": "string",
-                  "description": "last_activity"
+                  "format": "date-time",
+                  "x-ms-summary": "Last activity date",
+                  "description": "Timestamp indicating the last activity with the question (yyyy-MM-ddTHH:mm:ss.fffZ)"
                 },
                 "attachments": {
                   "type": "array",
-                  "items": {},
-                  "description": "attachments"
+                  "items": {
+                    "$ref": "#/definitions/Attachment"
+                  },
+                  "description": "The question attachments"
                 },
                 "created": {
                   "type": "string",
-                  "description": "created"
+                  "format": "date-time",
+                  "x-ms-summary": "Created date",
+                  "description": "Timestamp indicating when the question was created (yyyy-MM-ddTHH:mm:ss.fffZ)"
                 },
                 "comments": {
                   "type": "array",
@@ -696,12 +724,6 @@
                     }
                   },
                   "description": "label_matches"
-                },
-                "search_tracking_id": {
-                  "type": "string",
-                  "description": "search_tracking_id",
-                  "title": "",
-                  "x-ms-visibility": "advanced"
                 }
               }
             }
@@ -810,7 +832,7 @@
         },
         "description": {
           "type": "string",
-          "description": "description"
+          "description": "The concept description"
         },
         "is_flat": {
           "type": "boolean",
@@ -818,11 +840,11 @@
         },
         "label_match": {
           "type": "string",
-          "description": "label_match"
+          "description": "The label that matched the concept"
         },
         "language": {
           "type": "string",
-          "description": "language"
+          "description": "Concept language"
         },
         "ontology_id": {
           "type": "string",
@@ -830,7 +852,7 @@
         },
         "primary_label": {
           "type": "string",
-          "description": "primary_label"
+          "description": "Concept primary label"
         }
       }
     },
@@ -839,33 +861,35 @@
       "properties": {
         "created": {
           "type": "string",
-          "description": "created"
+          "format": "date-time",
+          "x-ms-summary": "Created date",
+          "description": "Timestamp indicating when the attachment was created (yyyy-MM-ddTHH:mm:ss.fffZ)"
         },
         "hash": {
           "type": "string",
-          "description": "hash"
+          "description": "The attachment hash"
         },
         "id": {
           "type": "integer",
           "format": "int32",
-          "description": "id"
+          "description": "the unique attachment id"
         },
         "link": {
           "type": "string",
-          "description": "link"
+          "description": "The relative url to the attachment resource"
         },
         "mime_type": {
           "type": "string",
-          "description": "mime_type"
+          "description": "The attachment file mime_type"
         },
         "name": {
           "type": "string",
-          "description": "name"
+          "description": "The attachment file name"
         },
         "size": {
           "type": "integer",
           "format": "int32",
-          "description": "size"
+          "description": "The attachment file size"
         }
       }
     },
@@ -874,28 +898,34 @@
       "properties": {
         "content_updated": {
           "type": "string",
-          "description": "content_updated"
+          "format": "date-time",
+          "x-ms-summary": "Content updated date",
+          "description": "Timestamp indicating when the comment's description was last updated (yyyy-MM-ddTHH:mm:ss.fffZ)"
         },
         "created": {
           "type": "string",
-          "description": "created"
+          "format": "date-time",
+          "x-ms-summary": "Created date",
+          "description": "Timestamp indicating when the comment was created (yyyy-MM-ddTHH:mm:ss.fffZ)"
         },
         "description": {
           "type": "string",
-          "description": "description"
+          "description": "This is the main text of the comment that provides additional information or context to the question or solution."
         },
         "id": {
           "type": "integer",
           "format": "int32",
-          "description": "id"
+          "description": "the unique comment id"
         },
         "language": {
           "type": "string",
-          "description": "language"
+          "description": "The comment language"
         },
         "updated": {
           "type": "string",
-          "description": "updated"
+          "format": "date-time",
+          "x-ms-summary": "comment updated date",
+          "description": "Last time the resource has been updated in the DB. This date does not reflect content updates but any update to any fields of the record. Use content_updated for information about content updates."
         },
         "upvote_count": {
           "type": "integer",
@@ -919,7 +949,7 @@
           "items": {
             "$ref": "#/definitions/Attachment"
           },
-          "description": "attachments"
+          "description": "The solution attachments"
         },
         "comments": {
           "type": "array",
@@ -930,40 +960,44 @@
         },
         "content_updated": {
           "type": "string",
-          "description": "content_updated"
+          "format": "date-time",
+          "x-ms-summary": "Content updated date",
+          "description": "Timestamp indicating when the solution's content was last updated (yyyy-MM-ddTHH:mm:ss.fffZ)"
         },
         "created": {
           "type": "string",
-          "description": "created"
-        },
-        "date_deleted": {
-          "type": "string",
-          "description": "date_deleted"
+          "format": "date-time",
+          "x-ms-summary": "Created date",
+          "description": "Timestamp indicating when the solution was created (yyyy-MM-ddTHH:mm:ss.fffZ)"
         },
         "description": {
           "type": "string",
-          "description": "description"
+          "description": "This is the main text of the solution that provides the answer or guidance to the question posed."
         },
         "expires": {
           "type": "string",
-          "description": "expires"
+          "format": "date-time",
+          "x-ms-summary": "Expires date",
+          "description": "Timestamp indicating when the solution is about to expiry and requires revalidation (yyyy-MM-ddTHH:mm:ss.fffZ)"
         },
         "id": {
           "type": "integer",
           "format": "int32",
-          "description": "id"
+          "description": "the unique solution id"
         },
         "is_published": {
           "type": "boolean",
-          "description": "is_published"
+          "description": "The solution is_published flag indicates whether the solution is published or not. A published solution is visible to all users."
         },
         "language": {
           "type": "string",
-          "description": "language"
+          "description": "The solution language"
         },
         "published": {
           "type": "string",
-          "description": "published"
+          "format": "date-time",
+          "x-ms-summary": "Published date",
+          "description": "Timestamp indicating when the solution was published (yyyy-MM-ddTHH:mm:ss.fffZ)"
         },
         "rating_count": {
           "type": "integer",
@@ -971,27 +1005,29 @@
           "description": "rating_count"
         },
         "solution_authority_approval": {
-          "type": "string",
-          "description": "solution_authority_approval"
+          "$ref": "#/definitions/SolutionAuthorityApproval"
         },
         "updated": {
           "type": "string",
-          "description": "updated"
+          "format": "date-time",
+          "x-ms-summary": "solution updated date",
+          "description": "Last time the resource has been updated in the DB. This date does not reflect content updates but any update to any fields of the record. Use content_updated for information about content updates."
         },
         "upvote_count": {
           "type": "integer",
           "format": "int32",
-          "description": "upvote_count"
+          "description": "Total number of likes for the solution."
         },
         "user": {
-          "$ref": "#/definitions/UserLegacy"
+          "$ref": "#/definitions/UserLegacy",
+          "description": "user who created the solution"
         },
         "validated": {
           "$ref": "#/definitions/SolutionValidation"
         },
         "validity_period": {
           "type": "string",
-          "description": "validity_period"
+          "description": "validity period until the solution is considered expired"
         }
       }
     },
@@ -1000,29 +1036,42 @@
       "properties": {
         "revalidatedAt": {
           "type": "string",
-          "description": "revalidated_at"
+          "description": "date when the solution was revalidated"
         },
         "validityPeriod": {
           "type": "string",
-          "description": "revalidatvalidity_perioded_at"
+          "description": "validity period until the solution is considered expired"
+        },
+        "user": {
+          "$ref": "#/definitions/UserLegacy",
+          "description": "user who validated the solution"
+        }
+      },
+      "description": "solution validation object containing information about the validation status of the solution"
+    },
+    "SolutionAuthorityApproval": {
+      "type": "object",
+      "properties": {
+        "approval_date": {
+          "format": "date-time",
+          "type": "string",
+          "x-ms-summary": "Approval date",
+          "description": "Date of the solution authority approval (yyyy-MM-ddTHH:mm:ss.fffZ)"
+        },
+        "solution_authority_id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "ID of the solution authority"
+        },
+        "solution_authority_name": {
+          "type": "string",
+          "description": "Name of the solution authority"
         },
         "user": {
           "$ref": "#/definitions/UserLegacy"
-        },
-        "image": {
-          "type": "string",
-          "description": "image"
-        },
-        "firstname": {
-          "type": "string",
-          "description": "firstname"
-        },
-        "lastname": {
-          "type": "string",
-          "description": "lastname"
         }
       },
-      "description": "validated"
+      "description": "Information about solution authority approval"
     },
     "User": {
       "type": "object",
@@ -1068,7 +1117,7 @@
           "description": "department"
         }
       },
-      "description": "user"
+      "description": "user object containing user information"
     },
     "UserLegacy": {
       "type": "object",
@@ -1094,7 +1143,7 @@
           "description": "lastname"
         }
       },
-      "description": "user"
+      "description": "user object containing user information"
     },
     "KnowledgeSpace": {
       "type": "object",
@@ -1105,7 +1154,9 @@
         },
         "created": {
           "type": "string",
-          "description": "Creation timestamp"
+          "format": "date-time",
+          "x-ms-summary": "Created date",
+          "description": "Timestamp indicating when the knowledge space was created (yyyy-MM-ddTHH:mm:ss.fffZ)"
         },
         "description": {
           "type": "string",
@@ -1114,7 +1165,7 @@
         "id": {
           "type": "integer",
           "format": "int32",
-          "description": "Unique identifier of the knowledge space"
+          "description": "the unique knowledge space id"
         },
         "is_closed": {
           "type": "boolean",
@@ -1131,7 +1182,9 @@
         },
         "updated": {
           "type": "string",
-          "description": "Last updated timestamp"
+          "format": "date-time",
+          "x-ms-summary": "knowledge space updated date",
+          "description": "Last time the resource has been updated in the DB."
         }
       },
       "description": "knowledge_space"
