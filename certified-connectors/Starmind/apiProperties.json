@@ -1,5 +1,117 @@
 {
   "properties": {
+    "connectionParameterSets": {
+      "uiDefinition": {
+        "displayName": "Authentication Type",
+        "description": "Type of authentication to be used."
+      },
+      "values": [
+        {
+          "name": "starmind-apikey",
+          "uiDefinition": {
+            "displayName": "Authenticate with API key (technical user)",
+            "description": "Use a Starmind-issued API key of a technical user to access the Starmind API.",
+            "tooltip": "Authenticate using an API key belonging to a technical Starmind user for secure, automated integrations."
+          },
+          "parameters": {
+            "sm_BaseUrl": {
+              "type": "string",
+              "uiDefinition": {
+                "displayName": "The Starmind network. Example: yourcompany.starmind.com",
+                "description": "Specify your Starmind network. Example: yourcompany.starmind.com",
+                "tooltip": "e.g., yourcompany.starmind.com",
+                "constraints": {
+                  "required": "true",
+                  "tabIndex": 2
+                }
+              }
+            },
+            "api_key": {
+              "type": "securestring",
+              "uiDefinition": {
+                "displayName": "API key as provided by Starmind",
+                "description": "Enter the API key as provided by Starmind",
+                "tooltip": "Use an API key issued by Starmind for secure, automated access as a technical user.",
+                "constraints": {
+                  "clearText": false,
+                  "required": "true",
+                  "tabIndex": 3
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "starmind-oauth",
+          "uiDefinition": {
+            "displayName": "Authenticate with your Starmind user (OAuth 2.0)",
+            "description": "Sign in using your own Starmind user account via OAuth 2.0.",
+            "tooltip": "Authenticate via OAuth 2.0 with your personal Starmind user instead of an API key."
+          },
+          "parameters": {
+            "token": {
+              "uiDefinition": {
+                "constraints": {
+                }
+              },
+              "type": "oauthSetting",
+              "oAuthSettings": {
+                "identityProvider": "oauth2",
+                "redirectMode": "GlobalPerConnector",
+                "customParameters": {
+                  "authorizationUrl": {
+                    "value": "https://auth-staging.starmind.com/auth/realms/1/protocol/openid-connect/auth"
+                  },
+                  "refreshUrl": {
+                    "value": "https://auth-staging.starmind.com/auth/realms/1/protocol/openid-connect/token"
+                  },
+                  "tokenUrl": {
+                    "value": "https://auth-staging.starmind.com/auth/realms/1/protocol/openid-connect/token"
+                  }
+                }
+              }
+            },
+            "token:clientId": {
+              "type": "string",
+              "uiDefinition": {
+                "displayName": "OAuth Client Id",
+                "description": "Enter OAuth Client Id",
+                "tooltip": "Client identification.",
+                "constraints": {
+                  "required": "true",
+                  "tabIndex": 3
+                }
+              }
+            },
+            "token:clientSecret": {
+              "type": "string",
+              "uiDefinition": {
+                "displayName": "OAuth Client Secret",
+                "description": "Enter OAuth Client Secret",
+                "tooltip": "Client secret.",
+                "constraints": {
+                  "clearText": false,
+                  "required": "true",
+                  "tabIndex": 4
+                }
+              }
+            },
+            "sm_BaseUrl": {
+              "type": "string",
+              "uiDefinition": {
+                "displayName": "The Starmind network. Example: yourcompany.starmind.com",
+                "description": "Specify your Starmind network. Example: yourcompany.starmind.com",
+                "tooltip": "e.g., yourcompany.starmind.com",
+                "constraints": {
+                  "required": "true",
+                  "tabIndex": 2
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
     "connectionParameters": {
       "sm_BaseUrl": {
         "type": "string",
@@ -12,32 +124,9 @@
             "tabIndex": 2
           }
         }
-      },
-      "api_key": {
-        "type": "securestring",
-        "uiDefinition": {
-          "displayName": "API key as provided by Starmind",
-          "description": "Enter the API key as provided by Starmind",
-          "tooltip": "Use an API key issued by Starmind for secure, automated access.",
-          "constraints": {
-            "clearText": false,
-            "required": "true",
-            "tabIndex": 3
-          }
-        }
       }
     },
     "policyTemplateInstances": [
-      {
-        "templateId": "setheader",
-        "title": "Apply Starmind API key to Header",
-        "parameters": {
-          "x-ms-apimTemplateParameter.name": "Authorization",
-          "x-ms-apimTemplateParameter.value": "Bearer @connectionParameters('api_key')",
-          "x-ms-apimTemplateParameter.existsAction": "override",
-          "x-ms-apimTemplate-policySection": "Request"
-        }
-      },
       {
         "templateId": "dynamichosturl",
         "title": "Apply configured sm_baseUrl to all requests",
