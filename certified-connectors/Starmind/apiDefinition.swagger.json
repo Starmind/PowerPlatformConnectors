@@ -1798,7 +1798,9 @@
       "in": "path",
       "name": "id",
       "required": true,
-      "type": "string"
+      "type": "string",
+      "x-ms-summary": "The ID of the user",
+      "x-ms-url-encoding": "single"
     }
   },
   "responses": {},
