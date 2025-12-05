@@ -96,7 +96,7 @@
             }
           }
         },
-        "summary": "Find questions",
+        "summary": "Find questions (deprecated)",
         "operationId": "FindQuestion",
         "x-ms-visibility": "internal",
         "deprecated": true,
@@ -198,7 +198,7 @@
         }
       },
       "post": {
-        "summary": "Create a question draft",
+        "summary": "Create a question draft (deprecated)",
         "description": "Creates a new question draft.",
         "operationId": "PostQuestion",
         "deprecated": true,
@@ -325,7 +325,7 @@
           }
         },
         "summary": "Find questions",
-        "operationId": "FindQuestionsV3",
+        "operationId": "FindQuestions_V3",
         "x-ms-visibility": "important",
         "deprecated": false,
         "parameters": [
@@ -401,7 +401,7 @@
           "openai-enabled": true,
           "operations": [
             {
-              "operationId": "FindQuestionsV3",
+              "operationId": "FindQuestions_V3",
               "x-ms-require-user-confirmation": false,
               "parameters": [
                 {
@@ -428,7 +428,7 @@
       "post": {
         "summary": "Create a question draft",
         "description": "Creates a new question draft. The draft is not yet searchable or answerable by others. After creation, publish the draft (via the publish endpoint) to trigger expert search, make the question discoverable, and allow other users to answer it. Providing the optional description helps experts understand the question better and increases the chances of getting high-quality answers.",
-        "operationId": "PostQuestionDraftV3",
+        "operationId": "PostQuestionDraft_V3",
         "deprecated": false,
         "parameters": [
           {
@@ -497,7 +497,7 @@
           "openai-enabled": true,
           "operations": [
             {
-              "operationId": "PostQuestionDraftV3",
+              "operationId": "PostQuestionDraft_V3",
               "x-ms-require-user-confirmation": false
             }
           ]
@@ -521,7 +521,7 @@
             }
           }
         },
-        "summary": "Publish a question",
+        "summary": "Publish a question (deprecated)",
         "description": "Publishes question draft",
         "operationId": "PublishQuestion",
         "x-ms-visibility": "internal",
@@ -570,7 +570,7 @@
         },
         "summary": "Publish a question",
         "description": "Publishes a question draft. Publishing the question triggers expert search, makes the question discoverable, and allows other users to answer it. Questions are always published anonymously.",
-        "operationId": "PublishQuestionDraftV3",
+        "operationId": "PublishQuestionDraft_V3",
         "x-ms-visibility": "important",
         "deprecated": false,
         "parameters": [
@@ -591,7 +591,7 @@
           "openai-enabled": true,
           "operations": [
             {
-              "operationId": "PublishQuestionDraftV3",
+              "operationId": "PublishQuestionDraft_V3",
               "x-ms-require-user-confirmation": true
             }
           ]
@@ -733,7 +733,7 @@
             }
           }
         },
-        "summary": "Find experts",
+        "summary": "Find experts (deprecated)",
         "description": "Finds experts based on the provided context",
         "operationId": "FindExpert",
         "x-ms-visibility": "internal",
@@ -818,7 +818,7 @@
         },
         "summary": "Find experts",
         "description": "Finds experts based on the provided text_query. The search leverages the knowledge graph to identify users with relevant expertise and knowledge related to the query. Provide the optional language to specify the preferred language for concept label filtering. This does not affect the search matching itself; it only filters which expertise we show from returned users by selecting concepts based on the primary label in the chosen language. Returned concepts are deduplicated when multiple concepts share the same primary label.",
-        "operationId": "FindExpertsV3",
+        "operationId": "FindExperts_V3",
         "x-ms-visibility": "important",
         "deprecated": false,
         "parameters": [
@@ -856,7 +856,7 @@
           "openai-enabled": false,
           "operations": [
             {
-              "operationId": "FindExpertsV3",
+              "operationId": "FindExperts_V3",
               "x-ms-require-user-confirmation": true
             }
           ]
@@ -884,7 +884,7 @@
             }
           }
         },
-        "summary": "Find user by id",
+        "summary": "Find user by id (deprecated)",
         "description": "Resolves the globalUserId to user object",
         "operationId": "ResolveUser",
         "x-ms-visibility": "internal",
@@ -924,7 +924,7 @@
     "/api/v3/users/{id}": {
       "get": {
         "description": "Retrieves user information based on the provided user id.",
-        "operationId": "GetUserByIdV3",
+        "operationId": "GetUserById_V3",
         "x-ms-visibility": "advanced",
         "deprecated": false,
         "parameters": [
@@ -992,7 +992,16 @@
         "summary": "Get user by id",
         "tags": [
           "user-management"
-        ]
+        ],
+        "x-ms-openai-data": {
+          "openai-enabled": false,
+          "operations": [
+            {
+              "operationId": "GetUserById_V3",
+              "x-ms-require-user-confirmation": true
+            }
+          ]
+        }
       }
     }
   },
