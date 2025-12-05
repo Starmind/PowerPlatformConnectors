@@ -258,6 +258,228 @@
         }
       }
     },
+    "/api/v3/questions": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Successful question search result.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "_links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "object",
+                      "properties": {
+                        "href": {
+                          "type": "string",
+                          "description": "href"
+                        }
+                      },
+                      "description": "self"
+                    },
+                    "next": {
+                      "type": "object",
+                      "properties": {
+                        "href": {
+                          "type": "string",
+                          "description": "href"
+                        }
+                      },
+                      "description": "next"
+                    },
+                    "last": {
+                      "type": "object",
+                      "properties": {
+                        "href": {
+                          "type": "string",
+                          "description": "href"
+                        }
+                      },
+                      "description": "last"
+                    }
+                  },
+                  "description": "_links"
+                },
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Question"
+                  },
+                  "description": "Paginated results of the question search."
+                },
+                "total": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "Total number of questions matching the request."
+                }
+              }
+            }
+          }
+        },
+        "summary": "Find questions",
+        "operationId": "FindQuestionsV3",
+        "x-ms-visibility": "important",
+        "deprecated": false,
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "The question search query",
+            "x-ms-summary": "Search query for questions",
+            "x-ms-visibility": "important"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Limit the number of returned questions. Defaults to 10.",
+            "x-ms-summary": "Maximum number of questions to return",
+            "x-ms-visibility": "important"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "x-ms-visibility": "important",
+            "description": "Filter the list of questions using a predefined filter.",
+            "x-ms-summary": "Predefined filter for questions",
+            "enum": [
+              "solved",
+              "unsolved",
+              "my-questions",
+              "my-solutions",
+              "flagged",
+              "following",
+              "trending",
+              "accepted",
+              "verified"
+            ]
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Specify the criteria the result is sorted by",
+            "x-ms-summary": "Sort criteria for questions",
+            "enum": [
+              "last_activity.desc",
+              "last_activity.asc",
+              "solution_count.desc",
+              "solution_count.asc",
+              "date_published.desc",
+              "date_published.asc",
+              "view_count.desc",
+              "view_count.asc",
+              "id.desc",
+              "id.asc",
+              "interest.desc",
+              "interest.asc",
+              "activity_and_interest.desc",
+              "activity_and_interest.asc"
+            ],
+            "x-ms-visibility": "important"
+          }
+        ],
+        "description": "Searches questions using optional `query`, `limit` (default 10), `filter`, and `sort`; returns a paginated collection with question `items`. By default, all published questions are returned, ordered by their last activity (descending). A combination of filters, search queries and ordering criteria can be applied to the result.",
+        "x-ms-openai-data": {
+          "openai-enabled": true,
+          "operations": [
+            {
+              "operationId": "FindQuestionsV3",
+              "x-ms-require-user-confirmation": false,
+              "parameters": [
+                {
+                  "name": "query",
+                  "type": "upsert",
+                  "properties": [
+                    {
+                      "name": "required",
+                      "value": false,
+                      "type": "upsert"
+                    },
+                    {
+                      "name": "x-ms-explicit-input",
+                      "value": false,
+                      "type": "upsert"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "post": {
+        "summary": "Create a question draft",
+        "description": "Creates a new question draft.",
+        "operationId": "PostQuestion",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "description": "question title, Between 10 and 100 characters.",
+                  "title": "",
+                  "x-ms-visibility": "important"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Question description providing detailed context and information about the question"
+                },
+                "language": {
+                  "type": "string",
+                  "description": "The question language will be detected automatically based on the title and description text. Providing a language explicitly is usually not necessary, and only helps in cases where the automatic language detection is not able to detect the language unambiguously",
+                  "title": "",
+                  "x-ms-visibility": "advanced"
+                },
+                "knowledge_space": {
+                  "type": "string",
+                  "description": "the id of the knowledge space to assign the question to",
+                  "title": "",
+                  "x-ms-visibility": "advanced"
+                }
+              },
+              "x-ms-visibility": "important",
+              "required": [
+                "title"
+              ]
+            },
+            "x-ms-visibility": "important"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Question draft created, successfully",
+            "schema": {
+              "$ref": "#/definitions/Question"
+            }
+          }
+        },
+        "x-ms-visibility": "important",
+        "x-ms-openai-data": {
+          "openai-enabled": true,
+          "operations": [
+            {
+              "operationId": "PostQuestion",
+              "x-ms-require-user-confirmation": false
+            }
+          ]
+        }
+      }
+    },
     "/api/v1/questions/{questionId}/publish": {
       "put": {
         "responses": {
@@ -516,7 +738,7 @@
         },
         "summary": "Find experts",
         "description": "Finds experts based on the provided text_query. The search leverages the knowledge graph to identify users with relevant expertise and knowledge related to the query. Provide the optional language to specify the preferred language for concept label filtering. This does not affect the search matching itself; it only filters which expertise we show from returned users by selecting concepts based on the primary label in the chosen language. Returned concepts are deduplicated when multiple concepts share the same primary label.",
-        "operationId": "FindExpert",
+        "operationId": "FindExpertsV3",
         "x-ms-visibility": "important",
         "deprecated": false,
         "parameters": [
@@ -551,7 +773,7 @@
           "openai-enabled": false,
           "operations": [
             {
-              "operationId": "FindExpert",
+              "operationId": "FindExpertsV3",
               "x-ms-require-user-confirmation": true
             }
           ]
