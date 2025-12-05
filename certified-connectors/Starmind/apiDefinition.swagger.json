@@ -1077,10 +1077,8 @@
       "type": "object",
       "properties": {
         "about": {
-          "type": [
-            "string",
-            "null"
-          ],
+          "type": "string",
+          "x-nullable": true,
           "description": "Custom text entered by the user to describe themselves in their 'About Me' section",
           "example": "Experienced software developer with a passion for knowledge sharing."
         },
@@ -1090,18 +1088,14 @@
           "example": "https://assets.starmind.com/resize?width=300&nocrop=true&url=https://scim.starmind.com/accounts/assets/avatars/6cc54b23-8785-41c0-8972-28bb24cc9922"
         },
         "company": {
-          "type": [
-            "string",
-            "null"
-          ],
+          "type": "string",
+          "x-nullable": true,
           "description": "Company of the user",
           "example": "Expertise Loop"
         },
         "country": {
-          "type": [
-            "string",
-            "null"
-          ],
+          "type": "string",
+          "x-nullable": true,
           "description": "ISO 3166-1 alpha-2 country code (e.g. ch, us, de) of the user",
           "example": "ch"
         },
@@ -1112,19 +1106,15 @@
           "example": "2025-11-04T12:53:02.000Z"
         },
         "deleted": {
-          "type": [
-            "string",
-            "null"
-          ],
+          "type": "string",
+          "x-nullable": true,
           "description": "Timestamp indicating when the user was deleted (yyyy-MM-ddTHH:mm:ss.fffZ). Without admin permissions, only non deleted user will be returned",
           "format": "date-time",
           "example": null
         },
         "department": {
-          "type": [
-            "string",
-            "null"
-          ],
+          "type": "string",
+          "x-nullable": true,
           "description": "Department of the user",
           "example": "Engineering"
         },
@@ -1140,10 +1130,8 @@
           "example": "Engi"
         },
         "first_seen": {
-          "type": [
-            "string",
-            "null"
-          ],
+          "type": "string",
+          "x-nullable": true,
           "description": "Timestamp indicating when the user logged in the first time (yyyy-MM-ddTHH:mm:ss.fffZ)",
           "format": "date-time",
           "example": "2025-11-05T13:59:32.000Z"
@@ -1162,8 +1150,8 @@
           "example": false
         },
         "language": {
-          "description": "The user's interface language preference",
-          "$ref": "#/definitions/Language"
+          "$ref": "#/definitions/Language",
+          "description": "The user's interface language preference"
         },
         "last_name": {
           "type": "string",
@@ -1171,18 +1159,13 @@
           "example": "Nerd"
         },
         "location": {
-          "type": [
-            "string",
-            "null"
-          ],
+          "type": "string",
           "description": "Location of the user",
           "example": "Zürich"
         },
         "position": {
-          "type": [
-            "string",
-            "null"
-          ],
+          "type": "string",
+          "x-nullable": true,
           "description": "Company of the user",
           "example": "Senior Software Engineer"
         }
@@ -1288,10 +1271,8 @@
                     "description": {
                       "description": "description",
                       "example": "open-source software for deploying and running of containerized applications",
-                      "type": [
-                        "string",
-                        "null"
-                      ]
+                      "type": "string",
+                      "x-nullable": true
                     },
                     "description_type": {
                       "description": "description_type",
@@ -1334,10 +1315,8 @@
               "ontology_id": {
                 "description": "ontology_id",
                 "example": "Q15206305",
-                "type": [
-                  "string",
-                  "null"
-                ]
+                "type": "string",
+                "x-nullable": true
               },
               "parents": {
                 "description": "The parent concept ids",
