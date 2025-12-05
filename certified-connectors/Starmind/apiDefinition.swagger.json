@@ -458,12 +458,7 @@
                   "example": "I am looking for information on how to integrate with the Starmind API. Specifically, I need details on authentication, available endpoints, and best practices for making requests."
                 },
                 "language": {
-                  "allOf": [
-                    {
-                      "$ref": "#/definitions/Language"
-                    }
-                  ],
-                  "description": "The question language will be detected automatically based on the title and description text. Providing a language explicitly is usually not necessary, and only helps in cases where the automatic language detection is not able to detect the language unambiguously"
+                  "$ref": "#/definitions/Language"
                 },
                 "knowledge_space": {
                   "type": "integer",
