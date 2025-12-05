@@ -99,6 +99,7 @@
         "summary": "Find questions",
         "operationId": "FindQuestion",
         "x-ms-visibility": "important",
+        "deprecated": true,
         "parameters": [
           {
             "name": "query",
@@ -197,6 +198,7 @@
         "summary": "Create a question draft",
         "description": "Creates a new question draft.",
         "operationId": "PostQuestion",
+        "deprecated": true,
         "parameters": [
           {
             "name": "body",
@@ -277,6 +279,7 @@
         "description": "Publishes question draft",
         "operationId": "PublishQuestion",
         "x-ms-visibility": "important",
+        "deprecated": true,
         "parameters": [
           {
             "name": "questionId",
@@ -435,6 +438,7 @@
         "description": "Finds experts based on the provided context",
         "operationId": "FindExpert",
         "x-ms-visibility": "important",
+        "deprecated": true,
         "parameters": [
           {
             "name": "body",
@@ -446,6 +450,91 @@
                 "text_query": {
                   "type": "string",
                   "description": "The text query to search for experts. This can be a question or a topic of interest.",
+                  "title": "",
+                  "x-ms-visibility": "important"
+                }
+              },
+              "required": [
+                "text_query"
+              ],
+              "x-ms-visibility": "important"
+            },
+            "x-ms-visibility": "important"
+          }
+        ],
+        "x-ms-openai-data": {
+          "openai-enabled": false,
+          "operations": [
+            {
+              "operationId": "FindExpert",
+              "x-ms-require-user-confirmation": true
+            }
+          ]
+        }
+      }
+    },
+    "/api/v3/experts": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "experts": {
+                  "type": "array",
+                  "items": {
+                    "properties": {
+                      "concept_scores": {
+                        "$ref": "#/definitions/ExpertConceptScores"
+                      },
+                      "score": {
+                        "description": "Relevance score indicating how well the expert matches the query",
+                        "format": "float",
+                        "type": "number"
+                      },
+                      "user": {
+                        "$ref": "#/definitions/UserV3"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "description": "List of experts matching the search query. May be empty if no experts are found.",
+                  "minItems": 0
+                },
+                "label_matches": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ConceptLabelMatch"
+                  },
+                  "description": "The matched labels for the expert search query. May be empty if no labels match.",
+                  "minItems": 0
+                }
+              }
+            }
+          }
+        },
+        "summary": "Find experts",
+        "description": "Finds experts based on the provided text_query. The search leverages the knowledge graph to identify users with relevant expertise and knowledge related to the query. Provide the optional language to specify the preferred language for concept label filtering. This does not affect the search matching itself; it only filters which expertise we show from returned users by selecting concepts based on the primary label in the chosen language. Returned concepts are deduplicated when multiple concepts share the same primary label.",
+        "operationId": "FindExpert",
+        "x-ms-visibility": "important",
+        "deprecated": false,
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "language": {
+                  "$ref": "#/definitions/Language"
+                },
+                "text_query": {
+                  "type": "string",
+                  "description": "Primary search text to identify experts. Can be a question, a summary of a text, one or multiple topics.",
+                  "example": "Who knows about Docker and Starmind APIs?",
+                  "minLength": 1,
                   "title": "",
                   "x-ms-visibility": "important"
                 }
@@ -494,6 +583,7 @@
         "description": "Resolves the globalUserId to user object",
         "operationId": "ResolveUser",
         "x-ms-visibility": "important",
+        "deprecated": true,
         "parameters": [
           {
             "name": "body",
@@ -977,6 +1067,128 @@
       },
       "description": "user object containing user information"
     },
+    "UserId": {
+      "description": "The unique user identifier (UUID) used to reference a user across the Starmind platform.",
+      "example": "123e4567-e89b-12d3-a456-426614174000",
+      "format": "uuid",
+      "type": "string"
+    },
+    "UserV3": {
+      "type": "object",
+      "properties": {
+        "about": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Custom text entered by the user to describe themselves in their 'About Me' section",
+          "example": "Experienced software developer with a passion for knowledge sharing."
+        },
+        "avatar_url": {
+          "type": "string",
+          "description": "URL to the user's avatar image",
+          "example": "https://assets.starmind.com/resize?width=300&nocrop=true&url=https://scim.starmind.com/accounts/assets/avatars/6cc54b23-8785-41c0-8972-28bb24cc9922"
+        },
+        "company": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Company of the user",
+          "example": "Expertise Loop"
+        },
+        "country": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "ISO 3166-1 alpha-2 country code (e.g. ch, us, de) of the user",
+          "example": "ch"
+        },
+        "created": {
+          "type": "string",
+          "description": "Timestamp indicating when the user was created (yyyy-MM-ddTHH:mm:ss.fffZ)",
+          "format": "date-time",
+          "example": "2025-11-04T12:53:02.000Z"
+        },
+        "deleted": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Timestamp indicating when the user was deleted (yyyy-MM-ddTHH:mm:ss.fffZ). Without admin permissions, only non deleted user will be returned",
+          "format": "date-time",
+          "example": null
+        },
+        "department": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Department of the user",
+          "example": "Engineering"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Email of the user",
+          "example": "engi.nerd@expertiseloop.ai"
+        },
+        "first_name": {
+          "type": "string",
+          "description": "First name of the user.",
+          "example": "Engi"
+        },
+        "first_seen": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Timestamp indicating when the user logged in the first time (yyyy-MM-ddTHH:mm:ss.fffZ)",
+          "format": "date-time",
+          "example": "2025-11-05T13:59:32.000Z"
+        },
+        "id": {
+          "$ref": "#/definitions/UserId"
+        },
+        "is_federated": {
+          "type": "boolean",
+          "description": "Indicates whether the user authenticates using local credentials (email/password) rather than an external SSO provider (SAML, OpenID Connect)",
+          "example": true
+        },
+        "is_technical": {
+          "type": "boolean",
+          "description": "Indicates whether the user is a technical API user (non-interactive/machine account); when true the user typically authenticates via API key",
+          "example": false
+        },
+        "language": {
+          "description": "The user's interface language preference",
+          "$ref": "#/definitions/Language"
+        },
+        "last_name": {
+          "type": "string",
+          "description": "Last name of the user.",
+          "example": "Nerd"
+        },
+        "location": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Location of the user",
+          "example": "Zürich"
+        },
+        "position": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Company of the user",
+          "example": "Senior Software Engineer"
+        }
+      },
+      "description": "User object containing user information."
+    },
     "KnowledgeSpace": {
       "type": "object",
       "properties": {
@@ -1020,6 +1232,137 @@
         }
       },
       "description": "The knowledge space object containing information about the knowledge space"
+    },
+    "Language": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 2,
+      "description": "ISO 639-1 two-letter language code (e.g., 'en') representing a supported language. 'xx' can be used to indicate an unknown language.",
+      "enum": [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "hr",
+        "it",
+        "pt",
+        "ro",
+        "xx",
+        "zh"
+      ],
+      "example": "en"
+    },
+    "ExpertConceptScores": {
+      "description": "Expert search concept matches including scores.",
+      "items": {
+        "description": "items",
+        "properties": {
+          "concept": {
+            "description": "concept",
+            "properties": {
+              "concept_id": {
+                "description": "concept_id",
+                "example": "210c3dc3-2be6-11ee-ba08-0282a30da65e",
+                "type": "string"
+              },
+              "encounter_count": {
+                "description": "encounter_count",
+                "example": 24,
+                "format": "int32",
+                "type": "integer"
+              },
+              "is_excluded_from_suggestion": {
+                "description": "is_excluded_from_suggestion",
+                "example": false,
+                "type": "boolean"
+              },
+              "is_flat": {
+                "description": "is_flat",
+                "example": false,
+                "type": "boolean"
+              },
+              "labels_for_languages": {
+                "description": "All available labels for different languages",
+                "items": {
+                  "properties": {
+                    "description": {
+                      "description": "description",
+                      "example": "open-source software for deploying and running of containerized applications",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "description_type": {
+                      "description": "description_type",
+                      "enum": [
+                        "manual",
+                        "starmind_ontology"
+                      ],
+                      "example": "starmind_ontology",
+                      "type": "string"
+                    },
+                    "language": {
+                      "$ref": "#/definitions/Language"
+                    },
+                    "labels": {
+                      "description": "labels",
+                      "example": [
+                        "Docker"
+                      ],
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "primary_label": {
+                      "description": "Main label for the language",
+                      "example": "Docker",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "last_update": {
+                "description": "last_update",
+                "example": "2025-11-05T09:26:12Z",
+                "format": "date-time",
+                "type": "string"
+              },
+              "ontology_id": {
+                "description": "ontology_id",
+                "example": "Q15206305",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "parents": {
+                "description": "The parent concept ids",
+                "example": [
+                  "d2a4f6e5-b8c3-4f09-8a12-3e4b5c6d7f90"
+                ],
+                "items": {
+                  "format": "uuid",
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "score": {
+            "description": "score",
+            "example": 0.0024465016117603783,
+            "format": "float",
+            "type": "number"
+          }
+        },
+        "type": "object"
+      },
+      "type": "array"
     }
   },
   "parameters": {},
