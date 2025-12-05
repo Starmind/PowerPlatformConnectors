@@ -418,9 +418,9 @@
       },
       "post": {
         "summary": "Create a question draft",
-        "description": "Creates a new question draft.",
-        "operationId": "PostQuestion",
-        "deprecated": true,
+        "description": "Creates a new question draft. The draft is not yet searchable or answerable by others. After creation, publish the draft (via the publish endpoint) to trigger expert search, make the question discoverable, and allow other users to answer it. Providing the optional description helps experts understand the question better and increases the chances of getting high-quality answers.",
+        "operationId": "PostQuestionDraftV3",
+        "deprecated": false,
         "parameters": [
           {
             "name": "body",
@@ -429,24 +429,36 @@
             "schema": {
               "type": "object",
               "properties": {
+                "category": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The optional id of the category to assign the question draft to"
+                },
                 "title": {
                   "type": "string",
-                  "description": "question title, Between 10 and 100 characters.",
+                  "description": "Question title, Between 4 and 100 characters by default. Depending on the network configuration the title max length may be limited or extended further.",
+                  "example": "How to integrate with the Starmind API?",
+                  "minLength": 4,
+                  "maxLength": 100,
                   "title": "",
                   "x-ms-visibility": "important"
                 },
                 "description": {
                   "type": "string",
-                  "description": "Question description providing detailed context and information about the question"
+                  "description": "The optional question description providing detailed context and information about the question. Depending on the network configuration the description might be enforced to be non-empty.",
+                  "example": "I am looking for information on how to integrate with the Starmind API. Specifically, I need details on authentication, available endpoints, and best practices for making requests."
                 },
                 "language": {
-                  "type": "string",
-                  "description": "The question language will be detected automatically based on the title and description text. Providing a language explicitly is usually not necessary, and only helps in cases where the automatic language detection is not able to detect the language unambiguously",
-                  "title": "",
-                  "x-ms-visibility": "advanced"
+                  "allOf": [
+                    {
+                      "$ref": "#/definitions/Language"
+                    }
+                  ],
+                  "description": "The question language will be detected automatically based on the title and description text. Providing a language explicitly is usually not necessary, and only helps in cases where the automatic language detection is not able to detect the language unambiguously"
                 },
                 "knowledge_space": {
-                  "type": "string",
+                  "type": "integer",
+                  "format": "int32",
                   "description": "the id of the knowledge space to assign the question to",
                   "title": "",
                   "x-ms-visibility": "advanced"
@@ -462,7 +474,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Question draft created, successfully",
+            "description": "Created question draft for further processing such as publishing.",
             "schema": {
               "$ref": "#/definitions/Question"
             }
@@ -473,7 +485,7 @@
           "openai-enabled": true,
           "operations": [
             {
-              "operationId": "PostQuestion",
+              "operationId": "PostQuestionDraftV3",
               "x-ms-require-user-confirmation": false
             }
           ]
