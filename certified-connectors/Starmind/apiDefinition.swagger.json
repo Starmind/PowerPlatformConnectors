@@ -600,10 +600,11 @@
     },
     "/api/v1/questions/{questionId}/complete": {
       "get": {
-        "summary": "Get complete question details",
+        "summary": "Get complete question details (deprecated)",
         "description": "Retrieves the complete details for a specific question, including solutions, comments, and concepts.",
         "operationId": "GetQuestion",
-        "x-ms-visibility": "advanced",
+        "deprecated": true,
+        "x-ms-visibility": "internal",
         "parameters": [
           {
             "name": "questionId",
@@ -929,7 +930,7 @@
         "deprecated": false,
         "parameters": [
           {
-            "$ref": "#/definitions/UserId"
+            "$ref": "#/parameters/UserId"
           }
         ],
         "responses": {
@@ -1796,7 +1797,15 @@
       }
     }
   },
-  "parameters": {},
+  "parameters": {
+    "UserId": {
+      "description": "The unique global user identifier (UUID) as path parameter used to reference the user across the Starmind platform.",
+      "in": "path",
+      "name": "id",
+      "required": true,
+      "type": "string"
+    }
+  },
   "responses": {},
   "securityDefinitions": {
     "apiKey": {
