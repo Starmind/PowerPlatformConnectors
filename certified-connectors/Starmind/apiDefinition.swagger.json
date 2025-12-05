@@ -536,6 +536,50 @@
         }
       }
     },
+    "/api/v3/questions/{questionId}/publish": {
+      "put": {
+        "responses": {
+          "200": {
+            "description": "The number of experts notified for the published question",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "number_of_experts": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "number_of_experts"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Publish a question",
+        "description": "Publishes a question draft. Publishing the question triggers expert search, makes the question discoverable, and allows other users to answer it. Questions are always published anonymously.",
+        "operationId": "PublishQuestionDraftV3",
+        "x-ms-visibility": "important",
+        "deprecated": false,
+        "parameters": [
+          {
+            "name": "questionId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "x-ms-summary": "ID of the question to publish",
+            "description": "The ID of the question draft to be published",
+            "x-ms-url-encoding": "single"
+          }
+        ],
+        "x-ms-openai-data": {
+          "openai-enabled": true,
+          "operations": [
+            {
+              "operationId": "PublishQuestionDraftV3",
+              "x-ms-require-user-confirmation": true
+            }
+          ]
+        }
+      }
+    },
     "/api/v1/questions/{questionId}/complete": {
       "get": {
         "summary": "Get complete question details",
