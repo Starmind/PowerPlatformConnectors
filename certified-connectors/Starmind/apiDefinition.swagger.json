@@ -3,7 +3,7 @@
   "info": {
     "title": "Starmind",
     "description": "The Starmind Connector enables seamless integration with Starmind's knowledge engine, allowing users to access verified answers and expert insights across their organisation. By connecting to Starmind, your workflows and agents can intelligently retrieve responses to business-critical questions, surface expert knowledge, and streamline decision-making processes.",
-    "version": "1.0",
+    "version": "2.0",
     "contact": {
       "name": "Starmind technical support experts are ready to listen and help",
       "url": "https://starmind.atlassian.net/servicedesk/customer/portal/2",
@@ -98,7 +98,7 @@
         },
         "summary": "Find questions",
         "operationId": "FindQuestion",
-        "x-ms-visibility": "important",
+        "x-ms-visibility": "internal",
         "deprecated": true,
         "parameters": [
           {
@@ -166,6 +166,9 @@
           }
         ],
         "description": "Finds questions based on the provided query parameters.",
+        "tags": [
+          "knowledge-suite"
+        ],
         "x-ms-openai-data": {
           "openai-enabled": true,
           "operations": [
@@ -246,7 +249,10 @@
             }
           }
         },
-        "x-ms-visibility": "important",
+        "x-ms-visibility": "internal",
+        "tags": [
+          "knowledge-suite"
+        ],
         "x-ms-openai-data": {
           "openai-enabled": true,
           "operations": [
@@ -388,6 +394,9 @@
           }
         ],
         "description": "Searches questions using optional `query`, `limit` (default 10), `filter`, and `sort`; returns a paginated collection with question `items`. By default, all published questions are returned, ordered by their last activity (descending). A combination of filters, search queries and ordering criteria can be applied to the result.",
+        "tags": [
+          "knowledge-suite"
+        ],
         "x-ms-openai-data": {
           "openai-enabled": true,
           "operations": [
@@ -481,6 +490,9 @@
           }
         },
         "x-ms-visibility": "important",
+        "tags": [
+          "knowledge-suite"
+        ],
         "x-ms-openai-data": {
           "openai-enabled": true,
           "operations": [
@@ -512,7 +524,7 @@
         "summary": "Publish a question",
         "description": "Publishes question draft",
         "operationId": "PublishQuestion",
-        "x-ms-visibility": "important",
+        "x-ms-visibility": "internal",
         "deprecated": true,
         "parameters": [
           {
@@ -524,6 +536,9 @@
             "description": "The ID of the question draft to be published",
             "x-ms-url-encoding": "single"
           }
+        ],
+        "tags": [
+          "knowledge-suite"
         ],
         "x-ms-openai-data": {
           "openai-enabled": true,
@@ -569,6 +584,9 @@
             "x-ms-url-encoding": "single"
           }
         ],
+        "tags": [
+          "knowledge-suite"
+        ],
         "x-ms-openai-data": {
           "openai-enabled": true,
           "operations": [
@@ -585,7 +603,7 @@
         "summary": "Get complete question details",
         "description": "Retrieves the complete details for a specific question, including solutions, comments, and concepts.",
         "operationId": "GetQuestion",
-        "x-ms-visibility": "important",
+        "x-ms-visibility": "advanced",
         "parameters": [
           {
             "name": "questionId",
@@ -606,6 +624,9 @@
             }
           }
         },
+        "tags": [
+          "knowledge-suite"
+        ],
         "x-ms-openai-data": {
           "openai-enabled": true,
           "operations": [
@@ -715,7 +736,7 @@
         "summary": "Find experts",
         "description": "Finds experts based on the provided context",
         "operationId": "FindExpert",
-        "x-ms-visibility": "important",
+        "x-ms-visibility": "internal",
         "deprecated": true,
         "parameters": [
           {
@@ -739,6 +760,9 @@
             },
             "x-ms-visibility": "important"
           }
+        ],
+        "tags": [
+          "knowledge-engine"
         ],
         "x-ms-openai-data": {
           "openai-enabled": false,
@@ -825,6 +849,9 @@
             "x-ms-visibility": "important"
           }
         ],
+        "tags": [
+          "knowledge-engine"
+        ],
         "x-ms-openai-data": {
           "openai-enabled": false,
           "operations": [
@@ -860,7 +887,7 @@
         "summary": "Find user by id",
         "description": "Resolves the globalUserId to user object",
         "operationId": "ResolveUser",
-        "x-ms-visibility": "important",
+        "x-ms-visibility": "internal",
         "deprecated": true,
         "parameters": [
           {
@@ -888,6 +915,83 @@
               }
             }
           }
+        ],
+        "tags": [
+          "user-management"
+        ]
+      }
+    },
+    "/api/v3/users/{id}": {
+      "get": {
+        "description": "Retrieves user information based on the provided user id.",
+        "operationId": "GetUserByIdV3",
+        "x-ms-visibility": "advanced",
+        "deprecated": false,
+        "parameters": [
+          {
+            "$ref": "#/definitions/UserId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with the requested user wrapped in a GraphQL-style envelope (data.user); if not found, data.user is null. An optional errors array may be present.",
+            "schema": {
+              "$ref": "#/definitions/GraphQLUserResponse"
+            },
+            "examples": {
+              "application/json": {
+                "userFound": {
+                  "data": {
+                    "user": {
+                      "about": "Experienced software developer with a passion for knowledge sharing.",
+                      "avatar_url": "https://assets.starmind.com/resize?width=300&nocrop=true&url=https://scim.starmind.com/accounts/assets/avatars/6cc54b23-8785-41c0-8972-28bb24cc9922",
+                      "company": "Expertise Loop",
+                      "country": "ch",
+                      "created": "2025-11-04T12:53:02.000Z",
+                      "deleted": null,
+                      "department": "Engineering",
+                      "email": "engi.nerd@expertiseloop.ai",
+                      "first_seen": "2025-11-05T13:59:32.000Z",
+                      "first_name": "Engi",
+                      "id": "123e4567-e89b-12d3-a456-426614174000",
+                      "is_federated": true,
+                      "is_technical": false,
+                      "language": "en",
+                      "last_name": "Nerd",
+                      "location": "Zürich",
+                      "position": "Senior Software Engineer"
+                    }
+                  }
+                },
+                "withErrors": {
+                  "data": {
+                    "user": null
+                  },
+                  "errors": [
+                    {
+                      "extensions": {
+                        "code": "NotFound"
+                      },
+                      "locations": [
+                        {
+                          "column": 5,
+                          "line": 2
+                        }
+                      ],
+                      "message": "User not found",
+                      "path": [
+                        "user"
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get user by id",
+        "tags": [
+          "user-management"
         ]
       }
     }
@@ -1620,6 +1724,67 @@
         "type": "object"
       },
       "type": "array"
+    },
+    "GraphQLUserResponse": {
+      "properties": {
+        "data": {
+          "properties": {
+            "user": {
+              "$ref": "#/definitions/UserV3"
+            }
+          },
+          "type": "object"
+        },
+        "errors": {
+          "description": "Optional array of GraphQL errors; only present if errors occurred",
+          "items": {
+            "$ref": "#/definitions/GraphQLError"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ],
+      "type": "object"
+    },
+    "GraphQLError": {
+      "type": "object",
+      "properties": {
+        "extensions": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "string"
+            }
+          }
+        },
+        "locations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "column": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "line": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          }
+        },
+        "message": {
+          "type": "string"
+        },
+        "path": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
     }
   },
   "parameters": {},
@@ -1636,10 +1801,23 @@
       "apiKey": []
     }
   ],
-  "tags": [],
+  "tags": [
+    {
+      "name": "knowledge-engine",
+      "description": "Operations for searching experts and interacting with the knowledge graph"
+    },
+    {
+      "name": "knowledge-suite",
+      "description": "Operations for searching for questions and interacting with the Q&A knowledge suite"
+    },
+    {
+      "name": "user-management",
+      "description": "Operations for retrieving and managing user information"
+    }
+  ],
   "x-ms-capabilities": {
     "testConnection": {
-      "operationId": "FindQuestion",
+      "operationId": "FindQuestionsV3",
       "parameters": {
         "limit": 1
       }
