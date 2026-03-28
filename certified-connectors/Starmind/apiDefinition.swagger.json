@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Starmind",
+    "title": "Starmind - OAuth",
     "description": "The Starmind Connector enables seamless integration with Starmind's knowledge engine, allowing users to access verified answers and expert insights across their organisation. By connecting to Starmind, your workflows and agents can intelligently retrieve responses to business-critical questions, surface expert knowledge, and streamline decision-making processes.",
     "version": "2.0",
     "contact": {
